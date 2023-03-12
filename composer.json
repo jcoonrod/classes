@@ -1,0 +1,18 @@
+{
+    "name": "jcoonrod/classes",
+    "description": "JC version of app classes",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jcoonrod\\Classes\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "John Coonrod",
+            "email": "john@mcld.org"
+        }
+    ],
+    "require": {}
+}
