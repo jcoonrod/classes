@@ -1,17 +1,17 @@
 <?php
 // Simple query display
-$page=new \Thpglobal\Classes\Page;
+$page=new Thpglobal\Classes\Page;
 $page->icon("download","/export","Download as excel");
 $page->icon("pie-chart","chart?chart_type=pie","Display as Pie Chart");
 $page->icon("bar-chart","chart?chart_type=bar","Display as Bar Chart");
 $page->icon("line-chart","chart?chart_type=line","Display as Line Chart");
 $page->start("Query");
 ?>
-<p><a class=pure-button href=?query=show+tables>Show tables</a>
+<div role=grid><a class=pure-button href=?query=show+tables>Show tables</a>
 <button class=pure-button onclick="goback()">&lt;</button>
 <button class=pure-button onclick="gofwd()">&gt;</button>
 <button class=pure-button onclick="goclear()">&#x1f5d1;</button> 
-<span id=nq>0</span> queries stored. Loading <span id=iq>0</span>.</p>
+<span id=nq>0</span> queries stored. Loading <span id=iq>0</span>.</div>
 <?php
 $query=$_GET["query"]??'';
 echo("<form><textarea id=q name=query rows=3 cols=80>$query</textarea><input type=submit onclick='saveq()'></form>\n");

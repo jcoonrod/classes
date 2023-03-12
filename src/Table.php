@@ -1,6 +1,6 @@
 <?php
 namespace Thpglobal\Classes;
-///
+
 class Table { // These are public for now but may eventually be private with setters
 	protected $db; // database connection
 	public $contents=array(array()); // main 2d array
@@ -314,10 +314,11 @@ class Table { // These are public for now but may eventually be private with set
 		$ncols=sizeof($row)??0;
 		
 		$nclasses=sizeof($this->classes);
-		$striped=($nclasses>0 ? "" : "pure-table-striped");
+//		$striped=($nclasses>0 ? "" : "pure-table-striped");
+		$striped=""; // not in use now
 		$tid=($_SESSION["datatable"] ? "id='datatable'" : "");
 		$sticky=($_SESSION["datatable"] ? "" : "style='position: sticky; top: -1px;'");
-		echo("<table $tid class='pure-table $striped pure-table-bordered'>\n<thead>\n");
+		echo("<table role='grid'>\n<thead>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
 		for($j=$jstart;$j<$ncols;$j++){
             $infoIndex=($this->infoMatchWithID) ? $row[$j-1].'_'.$row[$j] : $row[$j];
