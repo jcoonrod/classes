@@ -1,5 +1,5 @@
 <?php
-namespace Thpglobal\Classes;
+namespace Jcoonrod\Classes;
 
 // CLASS FILTER - dropdowns that - on change - restart the page and set $_COOKIE["name"];
 class Filter {

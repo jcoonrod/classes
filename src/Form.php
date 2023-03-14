@@ -1,6 +1,6 @@
 <?php
 // CLASS FORM - EDIT A RECORD
-namespace Thpglobal\Classes;
+namespace Jcoonrod\Classes;
 
 class Form {
 	protected $db;

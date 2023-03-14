@@ -1,5 +1,5 @@
 <?php
-namespace jcoonrod\Classes;
+namespace Thpglobal\Classes;
 // START CLASS PAGE
 class Page {
 	public $datatable = FALSE;
@@ -39,13 +39,14 @@ class Page {
 			?>
 		<nav>
 		  <ul>
-    		<li><a href=/><strong>Home</strong></a></li>
 			<?php
 			foreach($menu as $key=>$item) {
 				if(is_array($item) ){
-					echo("\t<li>\n\t\t<details role='list' dir='rtl'>\n\t\t\t<ul role='listbox'>\n");
+					$top=$key."▼";
+					echo("\t<li>$top</summary>\n");
+					echo("\t\t\t<ul>\n");
 					foreach($item as $b=>$a) echo("\t\t\t\t<li><a href='$a'>$b</a></li>\n");
-					echo("\t\t\t</ul>\n\t\t</details>\n\t</li>\n");
+					echo("\t\t\t</ul>\n\t</li>\n");
 				}else{
 				echo("\t<li><a href='$item'>$key</a></li>\n");
 				}
@@ -85,17 +86,18 @@ class Page {
 	<title><?php echo $title?></title>
 	<meta name='description' content='$title built on opensource github.com/jcoonrod/classes'/>
 	<link rel='shortcut icon' href='/static/favicon.png'>
-	<link rel='stylesheet' href='/static/pico.classless.css'>
+<!--	<link rel='stylesheet' href='/static/pico.classless.css'> -->
 	<link rel='stylesheet' href='/static/font-awesome.css'>
+	<link rel='stylesheet' href='/static/classes.css'>
 	<meta charset='utf-8'>
 </head>
 <body>
 <?php 
 		$this->menu();
-		echo("\t<h1>$title");
+		echo("\t<main><h1>$title");
 		foreach($this->links as $key=>$link) {
             $hint=$this->hints[$key];
-            echo("<a href=$link class='fa fa-$key' title='$hint'></a>\n");
+            echo(" <a href=$link class='fa fa-$key' title='$hint'></a>\n");
         }
         echo($this->appendTitle."</span></h1>\n");
 		if($reply){
@@ -127,8 +129,8 @@ class Page {
 	
 	public function end($message=""){
 		$time=microtime(true)-($this->time_start);
-		echo("<p><i>$message Run time: $time</i></p>\n");
-		echo("</div>\n");
+		echo("</main><footer><p><i>$message Run time: $time</i></p>\n");
+		echo("</footer>\n");
         echo("</body></html>\n");
     }
 }
