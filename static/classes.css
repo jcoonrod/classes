@@ -11,7 +11,9 @@ a {color:inherit; text-decoration:none;}
 a:hover {text-decoration:underline;}
 
 /* flex grid styling */
-section, .pure-g {display:flex; flex-wrap:wrap; align-items:left; padding-bottom:2rem; min-width: 200px;}
+section, .pure-g {display:flex; flex-wrap:wrap; 
+  justify-content: space-between; align-items:left; padding-bottom:2rem; 
+  min-width: 200px;}
 fieldset {display:flex; flex-direction: column; width:auto; padding:1rem; border-radius:1rem;}
 
 
