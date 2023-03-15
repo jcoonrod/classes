@@ -1,35 +1,23 @@
 <?php
-namespace Jcoonrod\Classes;
+namespace Thpglobal\Classes;
 
 // CLASS FILTER - dropdowns that - on change - restart the page and set $_COOKIE["name"];
 class Filter {
 	protected $db;
-	public $width=4; // Filter denomiator, eg normally 1/4 of screen
 	public $showOffLabel=false;
 	
-	public function get($prop){
-    	if(isset($this->$prop)){
-	    	return $this->$prop;
-	    }
-        return NULL;
-    }
-	public function set($prop, $value){
-    	if(isset($this->$prop)){
-	       $this->$prop = $value;
-    	}
-    }
     public function start($db=NULL){
-        echo("<div class=pure-g>\n");
+        echo("<section>\n");
 		$this->db=$db;
     }
     public function end(){
-        echo("</div>\n");
+        echo("</section>\n");
     }
 	private function now($name) { // common first steps for all filter - returns default value
 		$now=$_COOKIE[$name] ?? 0;
-		echo "\n<form class='pure-form pure-u-1 pure-u-md-1-".$this->width."'>\n" .
+		echo "\n<form>\n" .
 		"<!-- $name now=$now -->\n" .
-		"<div class='form-group'><label for='$name'>".ucfirst($name).":&nbsp;</label>" ;
+		"<label>".ucfirst($name).": " ;
 		return $now;
 	}
 
@@ -40,7 +28,7 @@ class Filter {
 
 	public function date($name){
 		$now=$this->now($name);
-		echo("<input type=date name=$name value='$now' onchange=this.form.submit();></div></form>");
+		echo("<input type=date name=$name value='$now' onchange=this.form.submit();></label></form>");
 		return $now;
 	}
 
@@ -49,7 +37,7 @@ class Filter {
 		if($now<>'off') $now='on';
 		$then=($now=='on' ? 'off' : 'on');
 		echo("<a class='fa fa-3x fa-toggle-$now' href='?$name=$then'></a>");
-		echo( ($now=='on' ? $on_msg : $off_msg)."</div></form>\n");
+		echo( ($now=='on' ? $on_msg : $off_msg)."</label></form>\n");
 		return $now;
 	}
 	/* switch version of the toggle, shows both on/off labels */
@@ -57,13 +45,13 @@ class Filter {
 		$now=$_COOKIE[$name] ?? 'off';
 		if($now<>'off') $now='on';
 		$then=($now=='on' ? 'off' : 'on');
-		echo("<div class='pure-u-1 pure-u-md-1-4'>$name: ". ($this->showOffLabel ? $off_msg : '') .
+		echo("<div'>$name: ". ($this->showOffLabel ? $off_msg : '') .
 			"<a class='fa fa-3x fa-toggle-$now' href='?$name=$then'></a>");
 		echo($on_msg."</div>");
 		return $now;
 	}
-	public function warn($msg='Error.'){
-		echo("<div class='pure-u-1 pure-u-md-1-4' style='background-color:red !important; color:white !important;'>$msg</div>\n");
+	public function warn($msg='Error.'){ // NOTE - hacky - fix!!
+		echo("<div style='background-color:red !important; color:white !important;'>$msg</div>\n");
 	}
 	public function query($name,$query){
 		if($this->db==NULL) Die("You forgot to pass $db in the start method.");
@@ -83,7 +71,7 @@ class Filter {
 			if($key==$now) {$selected=TRUE; echo(" SELECTED");}
 			echo(">$value\n");
 		}
-		echo("</select></div></form>\n");
+		echo("</select></label></form>\n");
 		return $now;
 	}
 }

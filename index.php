@@ -5,6 +5,7 @@ require_once(__DIR__."/src/Page.php");
 require_once(__DIR__."/src/Filter.php");
 require_once(__DIR__."/src/Form.php");
 require_once(__DIR__."/src/Table.php");
+require_once(__DIR__."/src/Chart.php");
 
 session_start();
 ini_set('display_errors',1);
@@ -16,8 +17,9 @@ function getcookie($x) {
 	return "";
 }
 setcookie("debug",0,0,"/");
+foreach($_GET as $key=>$value) setcookie($key,$value,0,'/');
 
-$_SESSION["menu"]=["Test Home"=>"/","Form"=>"/test1","List"=>"/test2","Admin"=>["Query"=>"/query","Edit"=>"/edit?table=test&id=1","Sub 3"=>"/sub3"]];
+$_SESSION["menu"]=["Test Home"=>"/","Form"=>"/testform","Filter"=>"/testfilter","Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Sub 3"=>"/sub3"]];
 
 // simple router between local and generic apps
 $url=$_SERVER['REQUEST_URI'];

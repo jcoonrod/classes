@@ -1,8 +1,23 @@
-* { font-family:'Source Sans Pro', sans-serif; line-height:1.6em;}
+/* main styling for Thpglobal/Classes 
+   The basic tags first */ 
+
+:root{--primary: #000088; --secondary:green;}
+* { font-family:'Source Sans Pro', sans-serif;}
+main {padding:1rem; background:white; line-height:1.6em;}
+p, input, button {font-size:1.2rem;margin-bottom:1rem;}
+button {width:20rem; padding:1rem; color:white; background-color:var(--primary); border-radius:1rem;}
+h1 {font-size:2.4rem;font-weight:normal;color: black; padding-bottom:1em;}
+a {color:inherit; text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+/* flex grid styling */
+section, .pure-g {display:flex; flex-wrap:wrap; align-items:left; padding-bottom:2rem; min-width: 200px;}
+fieldset {display:flex; flex-direction: column; width:auto; padding:1rem; border-radius:1rem;}
 
 
-main {padding:1rem; background:white;}
-nav {display:flex; background-color:navy; font-size:1.2rem;}
+/* the menu system */
+
+nav {display:flex; background-color:var(--primary); font-size:1rem;}
 nav ul {list-style: none; margin: 0; padding-left: 0;}
 nav ul li {
   color: white;
@@ -11,12 +26,13 @@ nav ul li {
   padding: 1rem;
   position: relative;
 }
-nav ul li a { color:white; text-decoration: none;}
+nav ul li:hover{background-color: var(--secondary);}
+nav ul li a { color: white; text-decoration: none;}
 nav ul li ul {
+  border:1px solid black;
   background: white;
   visibility: hidden;
   opacity: 0;
-  min-width: 5rem;
   position: absolute;
   margin-top: 1rem;
   left: 0;
@@ -30,15 +46,11 @@ nav ul li ul:hover {
   display: block;
 }
 
-nav ul li ul li { border:1px solid black;
+nav ul li ul li {
   clear: both;
-  width: 100%;
 }
 nav ul li ul li a {color:black;}
-
-h1 {font-size:2.4em;font-weight:normal;color: black;}
-a {color:inherit; text-decoration:none;}
-a:hover {text-decoration:underline;}
+nav ul li ul li:hover {color:black;background-color: lightgray;}
 
 .jumbotron {
     padding: 1.5em; background-color:#e5f7f8 !important; margin:auto; border-radius: 5px;
@@ -47,8 +59,6 @@ a:hover {text-decoration:underline;}
 span.fa-info-circle {cursor:pointer;}
 .sticky {position: sticky; top: -1px;}
 
-@media print{ 
-	.hidden-print, .hidden-print * { display: none !important;} 
 	/** Canvas tag is curerntly only used for Chart JS, however may be well to id/class the Charts. to keep styling more specific
 	 * Note, the solution to this stlying came from: https://stackoverflow.com/questions/41674976/resize-chart-js-canvas-for-printing
 	*/
@@ -59,7 +69,6 @@ span.fa-info-circle {cursor:pointer;}
         height: auto!important;
         width: auto!important;
 	}
-}
 
 table, td, th {border: 1px solid navy; border-collapse:collapse;}
 tr,th {padding:0.5rem; text-align:center;}
@@ -179,11 +188,6 @@ tr.ind {
 	  box-sizing: border-box !important;
 }
 
-.pure-table-odd td, .pure-table-striped tr:nth-child(2n-1) td{
-	background-color: white;
-	border: 1px solid #cbcbcb !important;
-}
-/* sticky related CSS ends */
 
 .info-success {
     background-color: darkgreen;
@@ -222,11 +226,6 @@ tr.wacolor, tr.wacolor > td {
 span.wacolor {
 	background-color:#FF8787;
 	padding: 5px;
-}
-
-/* Bd Multiview buttons */
-p > button.pure-button-primary{
-	padding: 8px;
 }
 
 /* MFP Styles */

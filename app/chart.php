@@ -28,7 +28,7 @@ $chart->fill='#ff8787';
 $chart->start($db, 'black');
 //$chart->make(1,"Test","$type",$x,$y);
 ?>
-<div class=pure-u-1-1><canvas id=chart1 width=600 height=300></canvas></div>
+<div ><canvas id=chart1 width=600 height=300></canvas></div>
 <script>
 var data1 = {
 <?php

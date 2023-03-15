@@ -1,10 +1,11 @@
 <?php
 // CLASS FORM - EDIT A RECORD
-namespace Jcoonrod\Classes;
+// 2023-03 simplify, remove css classes and divs, embed inputs in label instead of label for
+// ?? Can we get rid of the css class in the status span?
+namespace Thpglobal\Classes;
 
 class Form {
 	protected $db;
-	private $div1="<div class='pure-control-group'>\n<label for=";
 	public $data=array();
 	public $minNumAll;
 	public $maxNumAll;
@@ -19,14 +20,12 @@ class Form {
 	
 	public function start($db=NULL,$action="/update"){
 		$this->db=$db; // reference database connection
-		echo("<form class='pure-form pure-form-aligned' method='post'");
+		echo("<form method='post'");
 		if($action>'') echo (" action='$action'");
 		echo(">\n<Fieldset>\n");
 	}
 	public function end($submit="Save Data"){
-		echo("\n\n<div class='pure-controls'>".
-		'<button type="submit" class="pure-button pure-button-primary">'.$submit.'</button>'.
-		"</div>\n</fieldset>\n</form>\n");
+		echo("\n<button type=submit>$submit</button>\n</fieldset>\n</form>\n");
 	}
 	public function hidden($array) {
 		$this->hidden=$array;
@@ -38,63 +37,64 @@ class Form {
 		$this->data=$array;
 	}
 	public function toggle($name) {
-		echo($this->div1."'$name'>$name:</label>");
-		echo('<input type=hidden name='.$name.' value=0>');
+		echo("<label>$name:");
+		echo('<input type=hidden name='.$name.' value=0></label>');
 		echo('<label class=switch><input type=checkbox name='.$name);
-		if($this->data[$name]>0) echo(" checked");
-		echo ("><span class=slider></span></label></div>\n");
+		if($this->data[$name]??0>0) echo(" checked");
+		echo ("><span class=slider></span></label>\n");
 	}
 	public function rename($name,$showname) {
-		$value=$this->data[$name];
+		$value=$this->data[$name]??'';
 		if($value=='') $value=0;
 		$label=ucwords($showname);
 		if($min<>NULL) $label .= "$min to $max";
-		echo($this->div1."'$name'>".ucwords($name).":</label>");
+		echo("<label>$name ".ucwords($name).":");
 		echo("<input type=number name='$name' value='$value'");
 		if($min<>NULL) echo(" min='$min'");
 		if($max<>NULL) echo(" max='$max'");
 		if($min<>NULL) echo("><span class=status></span");
-		echo("></div>\n");
+		echo("></label>\n");
 	}
 	
 	public function num($name,$min=NULL,$max=NULL){
-		$value=$this->data[$name];
+		$value=$this->data[$name]??$min;
 		if(isset($this->minNumAll)) $min=$this->minNumAll;
 		if(isset($this->maxNumAll)) $max=$this->maxNumAll;
 		if($value=='') $value=0;
 		$label=ucwords($name);
 		if($min<>NULL) $label .= "$min to $max";
-		echo($this->div1."'$name'>".ucwords($name).":</label>");
+		echo("<label>$name ".ucwords($name).":");
 		echo("<input type=number name='$name' value='$value'");
 		if($min<>NULL) echo(" min='$min'");
 		if($max<>NULL) echo(" max='$max'");
 		if($min<>NULL) echo("><span class=status></span");
-		echo("></div>\n");
+		echo("></label>\n");
 	}
 	public function text($name,$rename='',$minlength=0){
 		$label=($rename>'' ? $rename : $name);
-		echo($this->div1."'$name'>".ucwords($label).":</label>");
-		echo("<input type=text name='$name' value='".$this->data[$name]."'");
+		$value=$this->data[$name]??'';
+		echo("<label>".ucwords($label).":");
+		echo("<input type=text name='$name' value='$value'");
 		if($minlength>0) echo(' required><span class=status></span');
-		echo("></div>\n");
+		echo("></label>\n");
 	}
 	public function date($name,$required=0){ // This restricts daterange to mindate/maxdate if set
 		$preset=$this->data[$name]??"";
-		echo($this->div1."'$name'>".ucwords($name).":</label>");
+		echo("<label>".ucwords($name).":");
 		echo("<input type=date name='$name' value='$preset'");
 		if(isset($_COOKIE["mindate"])) echo(" min='".$_COOKIE["mindate"]."'");
 		if(isset($_COOKIE["maxdate"])) echo(" max='".$_COOKIE["maxdate"]."'");
 		if($required) echo (' required');
-		echo("><span class=status></span></div>\n");
+		echo("><span class=status></span></label>\n");
 	}
 	public function textarea($name,$rename='',$required=0){
 		$label=($rename>'' ? $rename : $name);
-		echo($this->div1."'$name'>".ucwords($label).":</label>");
+		echo("<label>".ucwords($label).":");
 		echo("<textarea name=$name rows=5 cols=60");
 		if($required) echo(" REQUIRED");
-		echo(">".$this->data[$name]."</textarea>\n");
+		echo(">".$this->data[$name]??''."</textarea>\n");
 		if($required) echo("<span class=status></span>");
-		echo("</div>\n");
+		echo("</label>\n");
 	}
 	public function hide($name,$value){
 		echo("<input type=hidden name='$name' value='$value'>\n");
@@ -103,16 +103,16 @@ class Form {
         $requiredAttr=($required) ? ' required ' : '';
         //HtML5 requires required value to be empty (not zero) for validation
         $requiredVal=($required) ? '' : 0;
-        echo($this->div1."'$name'>".ucwords($name).":</label>");
+        echo("<label>".ucwords($name).":");
         echo("<select name='$name' $requiredAttr>\n<option value='$requiredVal'>(Select)\n");
         foreach($array as $key=>$value){
             echo("<option value='$key'");
-            if($key==$this->data[$name]) echo(" selected");
+            if($key==$this->data[$name]??'') echo(" selected");
             echo(">$value\n");
         }
         echo("</select>");
         if($required){echo "<span class=status></span>";}
-        echo("</div>\n");
+        echo("</label>\n");
     }
 	public function query($name,$query,$required=0){
 		$pdo_stmt=$this->db->query($query);
@@ -135,7 +135,7 @@ class Form {
 		foreach(range(0, $pdo_stmt->columnCount() - 1) as $column_index) {
 			$name=$meta[$column_index]["name"];
 			$type=$meta[$column_index]["native_type"];
-			$value=$this->data[$name];
+			$value=$this->data[$name]??'';
 			if($name=="id"){
 				$this->hide($name,$id);
 			}elseif(isset($this->hidden[$name])){
