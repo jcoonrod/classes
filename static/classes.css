@@ -72,9 +72,9 @@ span.fa-info-circle {cursor:pointer;}
         width: auto!important;
 	}
 
-table, td, th {border: 1px solid navy; border-collapse:collapse;}
+table, td, th {border: 1px solid var(--primary); border-collapse:collapse;}
 tr,th {padding:0.5rem; text-align:center;}
-th {background-color:navy;color:white;  max-width:25vw;}
+th {background-color:var(--primary);color:white;  max-width:25vw;}
 th > a {color:white;}
 td {max-width:25vw;}
 
@@ -137,6 +137,7 @@ input:checked + .slider:before {
 }
 
 /* used only in bd/fold-contents */
+/*
 
 .bold {
   font-weight: bold;
@@ -147,7 +148,6 @@ input:checked + .slider:before {
 	color: #fff !important;
 }
 
-/*
 tr:hover, td:hover {
    color: orangered;
 }

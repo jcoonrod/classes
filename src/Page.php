@@ -86,9 +86,12 @@ class Page {
 	<title><?php echo $title?></title>
 	<meta name='description' content='$title built on opensource github.com/jcoonrod/classes'/>
 	<link rel='shortcut icon' href='/static/favicon.png'>
-<!--	<link rel='stylesheet' href='/static/pico.classless.css'> -->
 	<link rel='stylesheet' href='/static/font-awesome.css'>
 	<link rel='stylesheet' href='/static/classes.css'>
+<?php 
+	$primary=$_COOKIE["primary"]??"";
+	if($primary) echo("<style> * {--primary:$primary;}</style>\n");
+?>
 	<meta charset='utf-8'>
 </head>
 <body>
