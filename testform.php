@@ -7,5 +7,7 @@ $form->text("name");
 //$form->range("n",1,11);
 $form->toggle("SDG");
 $form->date("this_date");
+$form->textarea("story");
+$form->pairs("fruit",["Apples","Bananas","Crrots"]);
 $form->end();
 $page->end("Form done!");

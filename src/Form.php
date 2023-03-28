@@ -37,11 +37,9 @@ class Form {
 		$this->data=$array;
 	}
 	public function toggle($name) {
-		echo("<label>$name:");
-		echo('<input type=hidden name='.$name.' value=0></label>');
-		echo('<label class=switch><input type=checkbox name='.$name);
+		echo('<label class="toggle"><input class="toggle-checkbox" type="checkbox"');
 		if($this->data[$name]??0>0) echo(" checked");
-		echo ("><span class=slider></span></label>\n");
+		echo('><div class="toggle-switch"></div><span class="toggle-label">$name</span></label>'."\n");
 	}
 	public function rename($name,$showname) {
 		$value=$this->data[$name]??'';

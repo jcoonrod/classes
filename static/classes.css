@@ -87,71 +87,59 @@ table > tbody > tr > td.mv {background-color: #e5f8f7 !important;}
 table > tbody > tr > td.mn {background-color: #e5f8f7 !important;}
 
 
-/* slide switch instead of checkbox */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px !important;
-  height: 32px;
-  bottom: 4px;
-}
-
-.switch input {display:none !important;}
-
-.slider {
-  position: absolute;
+/* slide switch instead of checkbox ref https://codepen.io/morgoe/pen/VvzWQg */
+.toggle {
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  display: inline-block;
 }
 
-.slider:before {
-  position: absolute;
+.toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 58px;
+  height: 32px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+.toggle-switch:before, .toggle-switch:after {
   content: "";
-  height: 26px;
-  width: 26px;
+}
+.toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
   left: 4px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: left 0.25s;
+}
+.toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.toggle-checkbox:checked + .toggle-switch {
+  background: #56c080;
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 30px;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+.toggle-label {
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
 }
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
 /* used only in bd/fold-contents */
-/*
-
-.bold {
-  font-weight: bold;
-}
-
-.bg-primary {
-	background-color:#0078e7 !important;
-	color: #fff !important;
-}
-
-tr:hover, td:hover {
-   color: orangered;
-}
-*/
 tr.ind {
     font-weight: bold;
     border-bottom: 1px solid #0088cc;
