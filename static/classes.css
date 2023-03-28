@@ -4,7 +4,7 @@
 :root{--primary: #000088; --secondary:green;}
 * { font-family:'Source Sans Pro', sans-serif;}
 main {padding:1rem; background:white; line-height:1.6em;}
-p, input, button {font-size:1.2rem;margin-bottom:1rem;}
+p, input, button, select, textarea {font-size:1.2rem;margin-bottom:1rem;}
 button {width:20rem; padding:1rem; color:white; background-color:var(--primary); border-radius:1rem;}
 h1 {font-size:2.4rem;font-weight:normal;color: black; padding-bottom:1em;}
 a {color:inherit; text-decoration:none;}

@@ -37,7 +37,8 @@ class Form {
 		$this->data=$array;
 	}
 	public function toggle($name) {
-		echo('<label class="toggle"><input class="toggle-checkbox" type="checkbox"');
+		echo("<input name=$name type=hidden value=0>\n");
+		echo('<label class="toggle"><input name="'.$name.'" class="toggle-checkbox" type="checkbox"');
 		if($this->data[$name]??0>0) echo(" checked");
 		echo('><div class="toggle-switch"></div><span class="toggle-label">'.$name.'</span></label>'."\n");
 	}
@@ -86,11 +87,12 @@ class Form {
 		echo("><span class=status></span></label>\n");
 	}
 	public function textarea($name,$rename='',$required=0){
+		$val=$this->data[$name]??'';
 		$label=($rename>'' ? $rename : $name);
-		echo("<label>".ucwords($label).":");
+		echo("<label>".ucwords($label).": ");
 		echo("<textarea name=$name rows=5 cols=60");
 		if($required) echo(" REQUIRED");
-		echo(">".$this->data[$name]??''."</textarea>\n");
+		echo(">$val</textarea>\n");
 		if($required) echo("<span class=status></span>");
 		echo("</label>\n");
 	}
@@ -101,11 +103,12 @@ class Form {
         $requiredAttr=($required) ? ' required ' : '';
         //HtML5 requires required value to be empty (not zero) for validation
         $requiredVal=($required) ? '' : 0;
+		$val=$this->data[$name]??0;
         echo("<label>".ucwords($name).":");
         echo("<select name='$name' $requiredAttr>\n<option value='$requiredVal'>(Select)\n");
         foreach($array as $key=>$value){
             echo("<option value='$key'");
-            if($key==$this->data[$name]??'') echo(" selected");
+            if($key==$val) echo(" selected");
             echo(">$value\n");
         }
         echo("</select>");
