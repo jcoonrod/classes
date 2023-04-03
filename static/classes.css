@@ -28,7 +28,7 @@ nav ul li {
   padding: 1rem;
   position: relative;
 }
-nav ul li:hover{background-color: var(--secondary);}
+nav ul li:hover{background-color: white; color: var(--primary);}
 nav ul li a { color: white; text-decoration: none;}
 nav ul li ul {
   border:1px solid black;
@@ -37,6 +37,7 @@ nav ul li ul {
   opacity: 0;
   position: absolute;
   margin-top: 1rem;
+  min-width: 10rem;
   left: 0;
   display: none;
   z-index:100
@@ -52,7 +53,7 @@ nav ul li ul li {
   clear: both;
 }
 nav ul li ul li a {color:black;}
-nav ul li ul li:hover {color:black;background-color: lightgray;}
+nav ul li ul li:hover {color:white; background-color: var(--primary);}
 
 .jumbotron {
     padding: 1.5em; background-color:#e5f7f8 !important; margin:auto; border-radius: 5px;
