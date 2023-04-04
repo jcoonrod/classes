@@ -23,6 +23,8 @@ if($query){
 		$grid->query($query);
 		$grid->show();
 	}else{
+    if(!ADMIN) Die("Not authorized");
+    require_once($_SERVER["DOCUMENT_ROOT"]."/includes/root.php");
     $count=$db->exec($query);
     echo("<p>Rows affected: $count</p>");
 	}
