@@ -64,6 +64,7 @@ nav ul li ul {
   margin-top: 1rem;
   left: 0;
   display: none;
+  z-index:10;
 }
 
 nav ul li:hover > ul,
