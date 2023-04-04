@@ -17,7 +17,7 @@ function getcookie($x) {
 	return "";
 }
 setcookie("debug",0,0,"/");
-foreach($_GET as $key=>$value) setcookie($key,$value,0,'/');
+foreach($_GET as $key=>$value) {setcookie($key,$value,0,'/'); $_COOKIE["$key"]=$value;}
 
 $_SESSION["menu"]=["Test Home"=>"/","Form"=>"/testform","Filter"=>"/testfilter","Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Sub 3"=>"/sub3"]];
 
@@ -26,8 +26,6 @@ $url=$_SERVER['REQUEST_URI'];
 $path=parse_url($url, PHP_URL_PATH);
 $generics=['/cookies', '/dump', '/edit', '/export', '/import', '/insert_table', '/list', '/logout',  '/query', '/update','/upload']; // standard routines defined in the classes
 
-// modify to run locally with a local database without logging in!
-$db = new SQLite3('test.db');
 
 if(in_array($path,$generics)){
 	include("./app$path.php");

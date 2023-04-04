@@ -7,11 +7,11 @@ $page->icon("bar-chart","chart?chart_type=bar","Display as Bar Chart");
 $page->icon("line-chart","chart?chart_type=line","Display as Line Chart");
 $page->start("Query");
 ?>
-<div role=grid><a class=pure-button href=?query=show+tables>Show tables</a>
-<button class=pure-button onclick="goback()">&lt;</button>
-<button class=pure-button onclick="gofwd()">&gt;</button>
-<button class=pure-button onclick="goclear()">&#x1f5d1;</button> 
-<span id=nq>0</span> queries stored. Loading <span id=iq>0</span>.</div>
+<p><button onclick=windows.location.href=show+tables>Show tables</button> 
+<button onclick="goback()">&lt;</button> 
+<button onclick="gofwd()">&gt;</button> 
+<button onclick="goclear()"><span class='fa fa-trash'></span></button> 
+<span id=nq>0</span> queries stored. Loading <span id=iq>0</span>.</p>
 <?php
 $query=$_GET["query"]??'';
 echo("<form><textarea id=q name=query rows=3 cols=80>$query</textarea><input type=submit onclick='saveq()'></form>\n");

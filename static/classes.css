@@ -1,11 +1,12 @@
 /* main styling for Thpglobal/Classes 
    The basic tags first */ 
 
-:root{--primary: #000088; --secondary:green;}
+:root{--primary: #000088; --secondary:green;box-sizing:border-box;}
 * { font-family:'Source Sans Pro', sans-serif;}
 main {padding:1rem; background:white; line-height:1.6em;}
 p, input, button, select, textarea {font-size:1.2rem;margin-bottom:1rem;}
-button {width:20rem; padding:1rem; color:white; background-color:var(--primary); border-radius:1rem;}
+button {padding:0.5rem 1rem; color:white; background-color:var(--primary); border-radius:1rem;}
+button:hover {font-weight:bold;}
 h1 {font-size:2.4rem;font-weight:normal;color: black; padding-bottom:1em;}
 a {color:inherit; text-decoration:none;}
 a:hover {text-decoration:underline;}
@@ -20,30 +21,53 @@ fieldset {display:flex; flex-direction: column; width:auto; padding:1rem; border
 /* the menu system */
 
 nav {display:flex; background-color:var(--primary); font-size:1rem;}
-nav ul {list-style: none; margin: 0; padding-left: 0;}
+a {text-decoration:none;}
+a:hover {text-decoration:none;}
+nav ul {
+  background: var(--primary);
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
 nav ul li {
-  color: white;
+  color: #fff;
+  background: var(--primary);
   display: block;
   float: left;
   padding: 1rem;
   position: relative;
+  text-decoration: none;
+  transition-duration: 0.2s;
 }
-nav ul li:hover{background-color: white; color: var(--primary);}
-nav ul li a { color: inherit; text-decoration: none;}
-nav ul li ul {
-  border:1px solid black;
+  
+nav ul li a {
+  color: inherit;
+}
+
+nav ul li:hover {
   background: white;
+  color:black;
+  cursor: pointer;
+}
+
+
+nav ul li ul {
+  background-color: white;
+  border: 1px solid black;
+  color:black;
   visibility: hidden;
   opacity: 0;
+  min-width: 5rem;
   position: absolute;
+  transition: all 0.5s ease;
   margin-top: 1rem;
-  min-width: 10rem;
   left: 0;
   display: none;
-  z-index:100
 }
+
 nav ul li:hover > ul,
-nav ul li ul:hover {
+ul li ul:hover {
   visibility: visible;
   opacity: 1;
   display: block;
@@ -51,12 +75,12 @@ nav ul li ul:hover {
 
 nav ul li ul li {
   clear: both;
+  width: 100%;
 }
-nav ul li ul li:hover {color:white; background-color: var(--primary);}
-nav ul li ul li a {color:inherit;}
+
 
 .jumbotron {
-    padding: 1.5em; background-color:#e5f7f8 !important; margin:auto; border-radius: 5px;
+    padding: 1.5em; background-color:#e5f7f8 !important; margin:auto; border-radius: 0.5rem;
 }
 
 span.fa-info-circle {cursor:pointer;}
