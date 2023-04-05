@@ -63,7 +63,7 @@ class Page {
 <?php 
 	$primary=$_COOKIE["primary"]??"";
 	if($primary) echo("<style> * {--primary:$primary;}</style>\n");
-	$secondary=$_COOKIE["primary"]??"";
+	$secondary=$_COOKIE["secondary"]??"";
 	if($secondary) echo("<style> * {--secondary:$secondary;}</style>\n");
 ?>
 	<meta charset='utf-8'>
