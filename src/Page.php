@@ -64,8 +64,7 @@ class Page {
 	$primary=$_COOKIE["primary"]??"";
 	if($primary) echo("<style> * {--primary:$primary;}</style>\n");
 	$secondary=$_COOKIE["primary"]??"";
-	if($secondary) echo("<style> * {--secondary:$primary;}</style>\n");
-
+	if($secondary) echo("<style> * {--secondary:$secondary;}</style>\n");
 ?>
 	<meta charset='utf-8'>
 </head>
