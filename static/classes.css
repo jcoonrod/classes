@@ -3,7 +3,7 @@
 
 :root{--primary: #000088; --secondary:lightblue;box-sizing:border-box;}
 * { font-family:'Source Sans Pro', sans-serif;}
-main {padding:1rem; background:white; line-height:1.6em;}
+main {padding:1rem; background:white;}
 p, input, button, select, textarea {font-size:1.2rem;margin-bottom:1rem;}
 button {padding:0.5rem 1rem; color:white; background-color:var(--primary); border-radius:1rem;}
 button:hover {font-weight:bold;}
