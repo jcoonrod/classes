@@ -81,7 +81,7 @@ nav ul li ul li {
 
 
 .jumbotron {
-    padding: 1.5em; background-color:lightseagreen; margin:auto; border-radius: 0.5rem;
+    padding: 1.5em; background-color: var(--secondary); margin:auto; border-radius: 0.5rem;
 }
 
 span.fa-info-circle {cursor:pointer;}
