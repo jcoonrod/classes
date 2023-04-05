@@ -2,23 +2,12 @@
 namespace Thpglobal\Classes;
 // START CLASS PAGE
 class Page {
-//	public $datatable = FALSE;
-//	public $addStickyHeader = TRUE;
-//	public $css=array("https://storage.googleapis.com/thp/thp.css"); // default used by all
-//	public $preh1=""; // used for dashboard colorbar etc
 	public $time_start; // used to measure length for process
 	public $links=array("print"=>"'javascript:window.print();'");
 	public $hints=array("print"=>"Print this page");
 	public $appendTitle='';
 	public function debug($message,$values) {
 		echo("<p>$message".":"); print_r($values); echo("</p>\n");
-	}
-
-	public function datatable(){
-		$this->datatable=TRUE;
-	}
-	public function disableStickyHeader(){
-		$this->addStickyHeader=FALSE;
 	}
 	public function menu() { // new classless responsive version
 		$menu=$_SESSION["menu"];
@@ -63,7 +52,7 @@ class Page {
 <?php 
 	$primary=$_COOKIE["primary"]??"";
 	if($primary) echo("<style> * {--primary:$primary;}</style>\n");
-	$secondary=$_COOKIE["secondary"]??"";
+	$secondary=$_COOKIE["secondary"]??""; 
 	if($secondary) echo("<style> * {--secondary:$secondary;}</style>\n");
 ?>
 	<meta charset='utf-8'>
