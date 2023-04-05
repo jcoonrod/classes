@@ -1,7 +1,7 @@
 /* main styling for Thpglobal/Classes 
    The basic tags first */ 
 
-:root{--primary: #000088; --secondary:green;box-sizing:border-box;}
+:root{--primary: #000088; --secondary:lightblue;box-sizing:border-box;}
 * { font-family:'Source Sans Pro', sans-serif;}
 main {padding:1rem; background:white; line-height:1.6em;}
 p, input, button, select, textarea {font-size:1.2rem;margin-bottom:1rem;}
