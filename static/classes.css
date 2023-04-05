@@ -81,7 +81,7 @@ nav ul li ul li {
 
 
 .jumbotron {
-    padding: 1.5em; background-color: var(--secondary); margin:auto; border-radius: 0.5rem;
+    padding: 1.5em; background-color: var(--secondary); margin-bottom:1rem; border-radius: 1rem;
 }
 
 span.fa-info-circle {cursor:pointer;}
@@ -99,7 +99,7 @@ span.fa-info-circle {cursor:pointer;}
 	}
 
 table, td, th {border: 1px solid var(--primary); border-collapse:collapse;}
-tr,th {padding:0.5rem; text-align:center;}
+td,th {padding:0.5rem; text-align:center;}
 th {background-color:var(--primary);color:white;  max-width:25vw;}
 th > a {color:white;}
 td {max-width:25vw;}
@@ -224,10 +224,6 @@ span.wacolor {
 	padding: 5px;
 }
 
-/* MFP Styles */
-td.rdata {text-align:right;}
-tr.hide,td.hide{display:none;}
-td.lc {text-align:left;}
 
 label {
   clear: both;
