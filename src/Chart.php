@@ -25,10 +25,10 @@ class Chart{
 		echo("var ChartOptions = {".$this->options."};\n");
 		echo("var RadarOptions = { scale: { ticks: { beginAtZero: true } } };\n"); // different for radar charts
 		echo("</script>\n");
-		echo("<div class=pure-g>\n"); // open a grid of sections.
+		echo("<section>\n"); // open a grid of sections.
 	}
 
-	public function end() { echo("</div>\n"); } // close the grid
+	public function end() { echo("</section>\n"); } // close the grid
 
 	// This is the main working method that spits out the necessary javascript for a chart.
 	public function query($n,$title,$query) { // run a query direct into a barchart

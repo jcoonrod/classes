@@ -314,8 +314,6 @@ class Table { // These are public for now but may eventually be private with set
 		$ncols=sizeof($row)??0;
 		
 		$nclasses=sizeof($this->classes);
-//		$striped=($nclasses>0 ? "" : "pure-table-striped");
-		$striped=""; // not in use now
 		$tid=($_SESSION["datatable"] ? "id='datatable'" : "");
 		$sticky=($_SESSION["datatable"] ? "" : "style='position: sticky; top: -1px;'");
 		echo("<table role='grid'>\n<thead>\n");

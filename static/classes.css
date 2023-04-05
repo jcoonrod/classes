@@ -81,7 +81,7 @@ nav ul li ul li {
 
 
 .jumbotron {
-    padding: 1.5em; background-color:#e5f7f8 !important; margin:auto; border-radius: 0.5rem;
+    padding: 1.5em; background-color:lightseagreen; margin:auto; border-radius: 0.5rem;
 }
 
 span.fa-info-circle {cursor:pointer;}
@@ -105,13 +105,13 @@ th > a {color:white;}
 td {max-width:25vw;}
 
 
-/* required for 2018 MFP system */
+/* required for 2018 MFP system
 table > tbody > tr > td.mb {color:white;background-color: #00988c !important;}
 table > tbody > tr > td.mt {background-color:#d8d8d8 !important;}
 table > tbody > tr > td.mg {background-color: #66d8cf !important;}
 table > tbody > tr > td.mv {background-color: #e5f8f7 !important;}
 table > tbody > tr > td.mn {background-color: #e5f8f7 !important;}
-
+*/
 
 /* slide switch instead of checkbox ref https://codepen.io/morgoe/pen/VvzWQg */
 .toggle {
@@ -165,7 +165,8 @@ table > tbody > tr > td.mn {background-color: #e5f8f7 !important;}
   position: relative;
   top: 2px;
 }
-/* used only in bd/fold-contents */
+
+/* used only in bd/fold-contents 
 tr.ind {
     font-weight: bold;
     border-bottom: 1px solid #0088cc;
@@ -175,33 +176,12 @@ tr.ind {
    background-color: darkslategrey !important;
    color: white;
 }
+*/
 .closed {
     display: none;
 }
 .opened {
     display: block;
-}
-
-
-
-/* for autocomplete.js */
-.autocomplete-suggestions {
-    text-align: left; cursor: default; border: 1px solid #ccc; border-top: 0; background: #fff; box-shadow: -1px 1px 3px rgba(0,0,0,.1);
-
-    /* core styles should not be changed */
-    position: absolute; display: none; z-index: 9999; max-height: 254px; overflow: hidden; overflow-y: auto; box-sizing: border-box;
-}
-.autocomplete-suggestion { position: relative; padding: 0 .6em; line-height: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.02em; color: #333; }
-.autocomplete-suggestion b { font-weight: normal; color: #1f8dd6; }
-.autocomplete-suggestion.selected { background: #f0f0f0; }
-
-
-/* sticky table related CSS starts */
-.lr-sticky-header {
-	  color: white;
-	  background: #C0392B;
-	  transition: all 0.6s;
-	  box-sizing: border-box !important;
 }
 
 

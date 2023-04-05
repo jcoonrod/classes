@@ -2,10 +2,10 @@
 namespace Thpglobal\Classes;
 // START CLASS PAGE
 class Page {
-	public $datatable = FALSE;
-	public $addStickyHeader = TRUE;
+//	public $datatable = FALSE;
+//	public $addStickyHeader = TRUE;
 //	public $css=array("https://storage.googleapis.com/thp/thp.css"); // default used by all
-	public $preh1=""; // used for dashboard colorbar etc
+//	public $preh1=""; // used for dashboard colorbar etc
 	public $time_start; // used to measure length for process
 	public $links=array("print"=>"'javascript:window.print();'");
 	public $hints=array("print"=>"Print this page");
@@ -20,19 +20,6 @@ class Page {
 	public function disableStickyHeader(){
 		$this->addStickyHeader=FALSE;
 	}
-
-/* dynamic property setter/getter for this class */
-	public function get($prop){
-		if(isset($this->$prop)){
-			return $this->$prop;
-		}
-		return NULL;
-	}
-	public function set($prop, $value){
-		if(isset($this->$prop)){
-			$this->$prop = $value;
-		}
-	}
 	public function menu() { // new classless responsive version
 		$menu=$_SESSION["menu"];
 		if(isset($_SESSION["menu"]) and sizeof($menu)>0) {
@@ -43,7 +30,7 @@ class Page {
 			foreach($menu as $key=>$item) {
 				if(is_array($item) ){
 					$top=$key."▼";
-					echo("\t<li>$top</summary>\n");
+					echo("\t<li>$top\n");
 					echo("\t\t\t<ul>\n");
 					foreach($item as $b=>$a) echo("\t\t\t\t<li><a href='$a'>$b</a></li>\n");
 					echo("\t\t\t</ul>\n\t</li>\n");
@@ -57,21 +44,6 @@ class Page {
 	<?php
 	}}
 	
-	public function start_light($title="THP",$lang="en") { // no menu, no icons, no datatable, no extras
-		foreach($_GET as $key=>$value) $_SESSION[$key]=$value;
-		$this->time_start=microtime(true);
-		echo("<!DOCTYPE html>\n<html lang=$lang>\n<head>\n");
-		echo("<meta name=viewport content='width=device-width, initial-scale=1'>\n");
-		echo("<title>$title</title>\n");
-		echo("<meta name='description' content='$title built on opensource github.com/jcoonrod/classes'/>\n");
-		echo("<link rel='shortcut icon' href='/static/favicon.png'>\n");
-		echo("<link rel='stylesheet' href='pico.classless.css'>\n");
-		echo("<meta charset='utf-8'>\n");
-        echo("</head>\n<body>\n");
-        echo("<header>\n");
-		echo("<h1>$title</h1>\n");
-	}
-
 	public function start($title="THP",$lang="en"){
 		$reply=$_COOKIE["reply"] ?? '';
 		setcookie("reply","",0,'/');
@@ -102,7 +74,7 @@ class Page {
             $hint=$this->hints[$key];
             echo(" <a href=$link class='fa fa-$key' title='$hint'></a>\n");
         }
-        echo($this->appendTitle."</span></h1>\n");
+        echo($this->appendTitle."</h1>\n");
 		if($reply){
 			$color="green";
 			if(substr($reply,0,5)=="Error") $color="red";
