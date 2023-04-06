@@ -461,6 +461,7 @@ class Table { // These are public for now but may eventually be private with set
 		echo "</table>";
 	}
 	public function show_datatable($href=''){
+		$this->href=$href;
 ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -503,12 +504,7 @@ $(document).ready(function() {
 	</thead>
 	<tbody>
 <?php
-		$nrows=sizeof($this->contents);
-		for($i=1;$i<$nrows;$i++) {
-			echo("<tr>");
-			for($j=0;$j<$ncols;$j++) echo("<td>".$this->contents[$i][$j]."</td>");
-			echo("</tr>");
-		}		
+		$this->putrows(0,1);
 		echo("</tbody>\n");
 		$this->searchfooter(0,$ncols);
 		echo("</table>\n");
