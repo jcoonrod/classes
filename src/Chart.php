@@ -41,6 +41,7 @@ class Chart{
 	public function make($n,$ctitle,$ctype,$x,$y){
 		$width=$this->width;
 		$title=str_replace("'","&apos;",$ctitle);
+		echo("<div>\n");
 		echo("<h3>$title</h3><canvas id=chart$n width=500 height=350></canvas>\n");
 		echo("<script>\n");
 		echo("var data$n = { \n");
@@ -59,7 +60,7 @@ class Chart{
 			if($ctype<>'radar' and $ctype<>'pie') echo(", options: ChartOptions");
 			if($ctype=='radar') echo(", options: RadarOptions");
 			echo("} );\n");
- 		echo("</script>\n");
+ 		echo("</script>\n</div>\n");
 	}
 	// "show" was earlier used on various scripts and now just calls make
 	// it autoincrements a count, and accepts an associative array of data instead of separate X Y arrays.

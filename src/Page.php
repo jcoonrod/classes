@@ -50,10 +50,9 @@ class Page {
 	<link rel='stylesheet' href='/static/font-awesome.css'>
 	<link rel='stylesheet' href='/static/classes.css'>
 <?php 
-	$primary=$_COOKIE["primary"]??"";
-	if($primary) echo("<style> * {--primary:$primary;}</style>\n");
-	$secondary=$_COOKIE["secondary"]??""; 
-	if($secondary) echo("<style> * {--secondary:$secondary;}</style>\n");
+// add optional local style.css
+		$f=$_SYSTEM["DOCUMENT_ROOT"]."/includes/style.css";
+		if (file_exists($f)) echo("<link rel='stylesheet' href='/static/style.css'>\n");
 ?>
 	<meta charset='utf-8'>
 </head>
