@@ -7,7 +7,6 @@ class Chart{
 	public $color='white'; // default text color, defines regular page from dashboard dark page
 	public $background='black'; // default for dashboard
 	public $fill="rgba(0,100,0,0.3)"; // 50% transparent green
-	public $width=3; // put 3 across unless changed
 	public $db=NULL; // only used with query method
 	public $options="scales:{xAxes:[{gridLines:{color:'yellow'}}],
 	yAxes:[{ticks:{beginAtZero:true},gridLines:{color:'yellow'}}]}\n"; // default for black dashboard - auto changes to blue
@@ -39,10 +38,9 @@ class Chart{
 	}
 
 	public function make($n,$ctitle,$ctype,$x,$y){
-		$width=$this->width;
 		$title=str_replace("'","&apos;",$ctitle);
 		echo("<div>\n");
-		echo("<h3>$title</h3><canvas id=chart$n width=500 height=350></canvas>\n");
+		echo("<h3>$title</h3>\n<canvas id=chart$n width=240 height=auto</canvas>\n");
 		echo("<script>\n");
 		echo("var data$n = { \n");
 		echo("  labels : ".json_encode($x).",\n");
