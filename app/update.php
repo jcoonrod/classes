@@ -10,8 +10,8 @@ if ($_COOKIE["debug"]) {
 
 //sometimes we need zero as default update value, set this variable from the app page
 $id = $_POST["id"];
-if ($id == '') {
-    $id = 0;
+if (!$id) {
+    $id = NULL;
 }
 
 $table = $_POST["table"];
@@ -25,7 +25,7 @@ if ($table == '') {
 }
 
 $prefix = ($id > 0 ? "update" : "insert into");
-$suffix = ($id > 0 ? " where id=:id" : "");
+$suffix = ($id > 0 ? " where id=:id" : ",id=:id");
 $params = array(':id' => $id);
 
 $query = "$prefix $table set ";
