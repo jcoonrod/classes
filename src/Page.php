@@ -51,7 +51,7 @@ class Page {
 	<link rel='stylesheet' href='/static/classes.css'>
 <?php 
 // add optional local style.css
-		$f=$_SYSTEM["DOCUMENT_ROOT"]."/includes/style.css";
+		$f=$_SYSTEM["DOCUMENT_ROOT"]."/static/style.css";
 		if (file_exists($f)) echo("<link rel='stylesheet' href='/static/style.css'>\n");
 ?>
 	<meta charset='utf-8'>
