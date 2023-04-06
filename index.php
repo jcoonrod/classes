@@ -19,12 +19,12 @@ function getcookie($x) {
 setcookie("debug",0,0,"/");
 foreach($_GET as $key=>$value) {setcookie($key,$value,0,'/'); $_COOKIE["$key"]=$value;}
 
-$_SESSION["menu"]=["Test Home"=>"/","Form"=>"/testform","Filter"=>"/testfilter","Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Sub 3"=>"/sub3"]];
+$_SESSION["menu"]=["Test Home"=>"/","Chart"=>"/testchart","Form"=>"/testform","Filter"=>"/testfilter","Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Sub 3"=>"/sub3"]];
 
 // simple router between local and generic apps
 $url=$_SERVER['REQUEST_URI'];
 $path=parse_url($url, PHP_URL_PATH);
-$generics=['/cookies', '/dump', '/edit', '/export', '/import', '/insert_table', '/list', '/logout',  '/query', '/update','/upload']; // standard routines defined in the classes
+$generics=['/cookies','/chart', '/dump', '/edit', '/export', '/import', '/insert_table', '/list', '/logout',  '/query', '/update','/upload']; // standard routines defined in the classes
 
 
 if(in_array($path,$generics)){

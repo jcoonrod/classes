@@ -2,11 +2,11 @@
 // Display a chart for whatever data is in the Contents array.
 // Initial step simply sets up a line chart but then we will add more complexity
 
-$page=new \Thpglobal\Classes\Page;
+$page=new Thpglobal\Classes\Page;
 
 $types=array("line"=>"Line","bar"=>"Bar","radar"=>"Radar","scatter"=>"Scatter","pie"=>"Pie","doughnut"=>"Doughnut");
 
-$page->start("Chart based on last query");
+$page->start("Chart based on last resultset");
 $contents=$_SESSION["contents"];
 $nrows=sizeof($contents);
 if(!$nrows) Die("No data.");
@@ -20,12 +20,11 @@ for($i=1;$i<$nrows;$i++) {
 	$x[]=$contents[$i][0];
 	$y[]=$contents[$i][1];
 }
-echo("<p>Query: ".$_SESSION["query"]."</p>\n");
 $chart=new \Thpglobal\Classes\Chart;
 $chart->color='black'; 
 $chart->background='white';
 $chart->fill='#ff8787';
-$chart->start($db, 'black');
+$chart->start('', 'black');
 //$chart->make(1,"Test","$type",$x,$y);
 ?>
 <div ><canvas id=chart1 width=600 height=300></canvas></div>
