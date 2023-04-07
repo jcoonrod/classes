@@ -109,7 +109,6 @@ class Chart{
 
     public function radar($data, $labels){
         $n = sizeof($data);
-
         $max=max($data); 
         $tick=10; 
         if($max<50) $tick=5; 
@@ -118,25 +117,26 @@ class Chart{
         $ytick=floor(180/$ny); // compared to bars, this is half due to center point
 
         $s='<svg viewBox="0 0 400 400" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
-        $s.='<style>.n {font: 10px sans-serif; fill: black;}</style>';
+        // $s.='<style>.n {font: 10px sans-serif; fill: black;}</style>';
         for ($j=1;$j<=$ny;$j++) { // first layout the grid
             $r=$j*$ytick;
           $y = 200 - $r;
-          $s.='<text class="n" x="200" y="'.$y.'">'.$r.'</text>';
+          $s.='<text x="200" y="'.$y.'">'.($j*$tick).'</text>';
           $s.='<polygon points="';
           for ($i = 0; $i < $n; $i++) { $s.=$this->putXY($r, $i, $n); }
           $s.='" fill="none" stroke="blue" /></polygon>';
         }
         // Next draw the data points
         $s.='<polygon points="';
-        for ($i = 0; $i < $n; $i++) $s.=$this->putXY($data[$i], $i, $n);
+        for ($i = 0; $i < $n; $i++) 
+            $s.=$this->putXY(floor($data[$i]*$ytick/$tick), $i, $n);
         $s.='" fill="rgba(0,255,0,0.3)" stroke="darkgreen"></polygon>';
         // Next put the labels in the appropriate points
         for ($i = 0; $i < $n; $i++) {
           $a = (2 * pi() * $i) / $n;
           $x = floor(200 + 180 * sin($a));
           $y = floor(200 - 180 * cos($a));
-          $s.='<text class="n" x="'.$x.'" y="'.$y.'">'.$labels[$i].'</text>';
+          $s.='<text text-anchor="middle" x="'.$x.'" y="'.$y.'">'.$labels[$i].'</text>';
         }
         $s.="</svg>";
         return $s;

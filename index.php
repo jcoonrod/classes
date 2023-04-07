@@ -16,7 +16,9 @@ function getcookie($x) {
 	if( array_key_exists($x,$_COOKIE)) return $_COOKIE[$x];
 	return "";
 }
-setcookie("debug",0,0,"/");
+function zero_cookie($c) {setcookie($c,0,0,'/'); $_COOKIE[$c]=0;}
+
+if(!array_key_exists("debug",$_COOKIE)) zero_cookie("debug");
 foreach($_GET as $key=>$value) {setcookie($key,$value,0,'/'); $_COOKIE["$key"]=$value;}
 
 $_SESSION["menu"]=["Test Home"=>"/","Chart"=>"/testchart","Form"=>"/testform","Filter"=>"/testfilter","Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Sub 3"=>"/sub3"]];
