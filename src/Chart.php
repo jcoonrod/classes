@@ -9,6 +9,8 @@ class Chart{
 
     public $colors = array('#4d4d4d','#5da5da','#faa43a','#60bd68','#f17cb0','#b2912f',
     '#b276b2','#decf3f','#f15854','aqua','brown','salmon','olive');
+    public $width=400; // each svg width in pixels, height automatic
+
 
     public function start() { echo("<section>\n");}
     public function end() { echo("</section>\n");}
@@ -63,13 +65,6 @@ class Chart{
         	return $chartelem."</svg>\n"; 
         }
     }
-
-    private function putXY($r, $i, $n) { // convert radius and index in spider to x,y pair
-        $a = (2 * pi() * $i) / $n;
-        $x = floor(120 + $r * sin($a));
-        $y = floor(120 - $r * cos($a));
-        return ' '.floor($x).','.floor($y);
-    }
     
     public function bar($data,$labels) {
         $max=max($data); 
@@ -104,13 +99,30 @@ class Chart{
         return $svg;
     }
 
+// called only inside radar
+    private function putXY($r, $i, $n) { // convert radius and index in spider to x,y pair
+        $a = (2 * pi() * $i) / $n;
+        $x = floor(200 + $r * sin($a));
+        $y = floor(200 - $r * cos($a));
+        return ' '.floor($x).','.floor($y);
+    }
+
     public function radar($data, $labels){
         $n = sizeof($data);
-        $s='<svg viewBox="0 0 240 240" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
+
+        $max=max($data); 
+        $tick=10; 
+        if($max<50) $tick=5; 
+        if($max<10) $tick=1;
+        $ny=ceil($max/$tick);
+        $ytick=floor(180/$ny); // compared to bars, this is half due to center point
+
+        $s='<svg viewBox="0 0 400 400" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
         $s.='<style>.n {font: 10px sans-serif; fill: black;}</style>';
-        for ($r = 10; $r < 110; $r+=10) { // first layout the grid
-          $y = 120 - $r;
-          $s.='<text class="n" x="121" y="'.$y.'">'.$r.'</text>';
+        for ($j=1;$j<=$ny;$j++) { // first layout the grid
+            $r=$j*$ytick;
+          $y = 200 - $r;
+          $s.='<text class="n" x="200" y="'.$y.'">'.$r.'</text>';
           $s.='<polygon points="';
           for ($i = 0; $i < $n; $i++) { $s.=$this->putXY($r, $i, $n); }
           $s.='" fill="none" stroke="blue" /></polygon>';
@@ -122,8 +134,8 @@ class Chart{
         // Next put the labels in the appropriate points
         for ($i = 0; $i < $n; $i++) {
           $a = (2 * pi() * $i) / $n;
-          $x = floor(115 + 105 * sin($a));
-          $y = floor(125 - 105 * cos($a));
+          $x = floor(200 + 180 * sin($a));
+          $y = floor(200 - 180 * cos($a));
           $s.='<text class="n" x="'.$x.'" y="'.$y.'">'.$labels[$i].'</text>';
         }
         $s.="</svg>";
