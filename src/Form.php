@@ -38,9 +38,9 @@ class Form {
 	}
 	public function toggle($name) {
 		echo("<input name=$name type=hidden value=0>\n");
-		echo('<label class="toggle"><input name="'.$name.'" class="toggle-checkbox" type="checkbox"');
+		echo('<label role=toggle>'.$name.'<input name="'.$name.'" role=toggle type="checkbox"');
 		if($this->data[$name]??0>0) echo(" checked");
-		echo('><div class="toggle-switch"></div><span class="toggle-label">'.$name.'</span></label>'."\n");
+		echo('><div role=toggle></div></label>'."\n");
 	}
 	public function rename($name,$showname) {
 		$value=$this->data[$name]??'';
