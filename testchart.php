@@ -6,7 +6,7 @@ $chart->start();
 $chart->show("Test 1","pie");
 $chart->show("Test 2","bar");
 $chart->show("Test 3","radar");
-$chart->show("Test 4","line");
+echo($chart->line());
 $chart->end();
 
 $page->end();

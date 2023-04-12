@@ -11,7 +11,6 @@ class Chart{
     '#b276b2','#decf3f','#f15854','aqua','brown','salmon','olive');
     public $width=400; // each svg width in pixels, height automatic
 
-
     public function start() { echo("<section>\n");}
     public function end() { echo("</section>\n");}
 
@@ -19,10 +18,12 @@ class Chart{
 		foreach($data as $key=>$value) { $x[]=$key; $y[]=$value; };
         if($type=='radar') $svg=$this->radar($y,$x);
         elseif($type=='bar') $svg=$this->bar($y,$x);
+        elseif($type=='line') $svg=$this->line();
         else $svg=$this->piechart($y,$x);
         echo("<div><h3>$title</h3>$svg</div>\n");
 	}
-    public function piechart($data, $labels, $cx=200, $cy=200, $radius=190) {
+    public function piechart($data, $labels) {
+        $cx=200; $cy=200; $radius=190;
         $svg = '<svg viewBox="0 0 400 400" width=400 height=auto>'
         .'<style>.wt { font: bold sans-serif; fill: white; }</style>';
         $max = count($data);	
@@ -32,9 +33,8 @@ class Chart{
         $dx = $radius; // Starting point: 
         $dy = 0; // first slice starts in the East
         $oldangle = 0;
-        if($sum) {
         /* Loop through the slices */
-        	for ($i = 0; $i<$max; $i++) {
+        for ($i = 0; $i<$max; $i++) {
         	if($deg) $angle = $oldangle + $data[$i]/$deg; // cumulative angle
         	$x = round( cos(deg2rad($angle)) * $radius); // x of arc's end point
         	$y = round(sin(deg2rad($angle)) * $radius); // y of arc's end point
@@ -49,23 +49,61 @@ class Chart{
         	$ay = $cy + $y; // absolute $y
         	$adx = $cx + $dx; // absolute $dx
         	$ady = $cy + $dy; // absolute $dy
-        	$svg .= '<path d="M'.$cx.,$cy "; // move cursor to center
-        	$svg .= " L$adx,$ady "; // draw line away away from cursor
-        	$chartelem .= " A$radius,$radius 0 $laf,1 $ax,$ay "; // draw arc
-        	$chartelem .= " z\" "; // z = close path
-        	$chartelem .= " fill=\"$colour\" stroke=\"white\" stroke-width=\"2\" ";
-        	$chartelem .= " stroke-linejoin=\"round\" />";
-        	$chartelem .='<text class="wt" text-anchor="middle" x="'.$tx.'" y="'.$ty.'" style="fill:white">'.$text.'%</text>';
-        	$chartelem .='<text class="wt" text-anchor="middle" x="'.$tx.'" y="'.($ty-17).'" style="fill:white">'.$labels[$i].'</text>';
+        	$svg .= '<path d="M'.$cx.' '.$cy; // move cursor to center
+        	$svg .= " L$adx $ady "; // draw line away away from cursor
+        	$svg .= " A$radius,$radius 0 $laf,1 $ax,$ay "; // draw arc
+        	$svg .= " Z\" "; // z = close path
+        	$svg .= " fill=\"$colour\" stroke=\"white\" stroke-width=\"2\" ";
+        	$svg .= " stroke-linejoin=\"round\" />";
+        	$svg .='<text class="wt" text-anchor="middle" x="'.$tx.'" y="'.$ty.'" style="fill:white">'.$text.'%</text>';
+        	$svg .='<text class="wt" text-anchor="middle" x="'.$tx.'" y="'.($ty-17).'" style="fill:white">'.$labels[$i].'</text>';
         	$dx = $x; // old end points become new starting point
         	$dy = $y; // id.
         	$oldangle = $angle;
-        	}	
-        	return $chartelem."</svg>\n"; 
         }
+        return $svg."</svg>\n"; 
+    }
+
+    public function line($xdata=[1.1,2.2,3.3],$ydata=[1.2,4.4,9.7]){
+        $xmax=max($xdata);
+        $xtick=10; 
+        if($xmax<50) $xtick=5; 
+        if($xmax<10) $xtick=1;
+        $dx=($xmax<1 ? 360 : 360/$xmax); // number of pixels between ticks
+        $nx=ceil($xmax/$xtick); //how many xticks?
+
+        $ymax=max($ydata); 
+        $ytick=10; 
+        if($ymax<50) $ytick=5; 
+        if($ymax<10) $ytick=1;
+        $dy=($ymax<1 ? 360 : 360/$ymax); // number of pixels between ticks
+        $ny=ceil($ymax/$ytick); //how many xticks?
+
+        $svg='<svg viewBox="0 0 400 400" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
+// horizontal lines
+        for($j=0;$j<=$ny;$j++){
+            $y=380-$j*$dy;
+            $svg.='<line x1="20" y1="'.$y.'" x2="400" y2="'.$y.'" stroke="blue"/>';
+            $svg.='<text x="0" y="'.$y.'">'.$j*$ytick.'</text>';
+        }
+// vertical lines
+        for($i=0;$i<=$nx;$i++){
+            $x=40+$i*$dx;
+            $svg.='<line x1="'.$x.'" y1="20" x2="'.$x.'" y2="380" stroke="blue"/>';
+            $svg.='<text x="'.$x.'" y="400">'.$i*$xtick.'</text>';
+        }
+// the line
+        $svg.='<polyline points="';
+        for($i=0;$i<count($xdata);$i++) {
+            $x=40+round($xdata[$i]*$dx/$xtick);
+            $y=380-round($ydata[$i]*$dy/$ytick);
+            $svg.="$x,$y ";
+        }
+        $svg.=' style="fill:none;stroke:red;stroke-width:3" />';
+        return $svg.="</svg>\n";
     }
     
-    public function bar($data,$labels) {
+    public function bar($data,$labels) { // note - size of box is 360x360 to allow for labels
         $max=max($data); 
         $tick=10; 
         if($max<50) $tick=5; 
@@ -94,8 +132,7 @@ class Chart{
             $x=$x1+$i*$xtick; $height=floor(360*$data[$i]/($ny*$tick));
             $svg.='<rect x="'.$x.'" y="'.(380-$height).'" width="'.$half.'" height="'.$height.'" fill="rgba(0,255,0,0.3)" stroke="darkgreen"></rect>';
         }
-        $svg.="</svg>";
-        return $svg;
+        return $svg.="</svg>\n";
     }
 
 // called only inside radar
@@ -139,17 +176,5 @@ class Chart{
         }
         $s.="</svg>";
         return $s;
-    }
-    public function pie2($assoc,$colors) {
-        global $translations;
-        // convert the associative array into an iterative data and then labels
-        foreach($assoc as $key=>$value) {$data[]=$value; $labels[]=$key;}
-        echo(piechart($data,$colors));
-        echo("<p>");
-        foreach($labels as $i=>$label) {
-        	$x=(getcookie("language") ? $label : $translations[$label]);
-        	echo(box($colors[$i])."&nbsp;$x, ");
-        }
-        echo("</p>\n");
     }
 }
