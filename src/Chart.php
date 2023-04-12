@@ -23,7 +23,7 @@ class Chart{
         echo("<div><h3>$title</h3>$svg</div>\n");
 	}
     public function piechart($data, $labels, $cx=200, $cy=200, $radius=190) {
-        $chartelem = '<svg viewBox="0 0 400 400" width=400 height=auto>'
+        $svg = '<svg viewBox="0 0 400 400" width=400 height=auto>'
         .'<style>.wt { font: bold sans-serif; fill: white; }</style>';
         $max = count($data);	
         $sum = array_sum($data);
@@ -49,9 +49,8 @@ class Chart{
         	$ay = $cy + $y; // absolute $y
         	$adx = $cx + $dx; // absolute $dx
         	$ady = $cy + $dy; // absolute $dy
-        	$chartelem .= "\n";
-        	$chartelem .= "<path d=\"M$cx,$cy "; // move cursor to center
-        	$chartelem .= " L$adx,$ady "; // draw line away away from cursor
+        	$svg .= '<path d="M'.$cx.,$cy "; // move cursor to center
+        	$svg .= " L$adx,$ady "; // draw line away away from cursor
         	$chartelem .= " A$radius,$radius 0 $laf,1 $ax,$ay "; // draw arc
         	$chartelem .= " z\" "; // z = close path
         	$chartelem .= " fill=\"$colour\" stroke=\"white\" stroke-width=\"2\" ";
