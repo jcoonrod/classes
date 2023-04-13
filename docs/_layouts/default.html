@@ -7,22 +7,14 @@
 	<meta name = "Description" content = "Documentation for classes by John Coonrod.">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Unna|Source+Sans+Pro">
     <style>
-        body {padding:1em;
-        	max-width: 1000px; margin: 0 auto;
-            font-family:"Source Sans Pro"; font-size:1.4rem;}
-        h1, h2 {font-family: Unna;color: #0000aa; font-size:3rem; font-weight:normal;}
-        header {display:flex;}
-        nav {align-self:center;}
-nav ul {
-  background: white;
-  list-style: none;
-  color: black;
-  margin: 0;
-  padding-left: 0;
-}
+      body {padding:1em; max-width: 1000px; margin: 0 auto; font-family:"Source Sans Pro"; color:#222222;}
+      p, li {font-size:1.25rem; line-height:1.6;}
+      h1, h2 {font-family: Unna;color: #0000aa; font-size:3rem; font-weight:normal;}
+      header {display:flex;}
+      nav {align-self:center;}
+      nav ul {background: white;list-style: none; margin: 0; padding-left: 0;}
 
 nav ul li {
-  color: #black;
   background: white;
   display: block;
   float: left;
@@ -32,9 +24,7 @@ nav ul li {
   transition-duration: 0.5s;
 }
   
-nav ul li a {
-  color: black;
-}
+nav ul li a { color: inherit;}
 
 nav ul li:hover {
   background: lightgray;
@@ -70,7 +60,7 @@ nav ul li ul li {
 </head>
 <body>
     <header>
-    <svg class="vanish" height="125" width="125">
+    <svg height="125" width="125">
 	<g>
         <rect x="0" y="0" height="100" width="100" fill="#0000aa"></rect>
         <rect x="30" y="100" height="20" width="90" fill="coral"></rect>
