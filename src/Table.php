@@ -464,7 +464,7 @@ class Table { // These are public for now but may eventually be private with set
 		?>
 
         <script type="module">
-            import {DataTable} from "./module.js"
+            import {DataTable} from "/static/module.js"
             window.dt = new DataTable("table", {
                 perPageSelect: [5, 10, 15, ["All", -1]],
                 tableRender: (_data, table, type) => {
