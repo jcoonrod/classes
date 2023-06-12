@@ -427,14 +427,14 @@ class Table { // These are public for now but may eventually be private with set
 			echo("</tr>\n");
 		}
 	}
-
+/*
 	// on datatables, add earchable footer fiels
 	public function searchfooter($j1,$ncols) {
 		echo("<tfoot><tr>");
 		for($j=$j1; $j<$ncols; $j++) echo("<th>".$this->contents[0][$j]."</th>");
 			echo("</tr></tfoot>\n");
 	}
-
+*/
 // SHOW THE TABLE - Including the id column on hrefs, but do skip the groups column
 // this handles some really complex options:
 //	* it might have group headers defined in column 0
@@ -462,6 +462,7 @@ class Table { // These are public for now but may eventually be private with set
 	}
 	public function show_datatable($href=''){
 		$this->href=$href;
+/*
 ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -493,10 +494,11 @@ $(document).ready(function() {
 } );
 </script>
 <?php
+*/
 		$_SESSION["contents"]=$this->contents; // put it first for easy debug!
 		$ncols=sizeof($this->contents[0]);
 		?>
-<table id='datatable'>
+<table class=table>
 	<thead><tr>
 <?php
 		for($j=0;$j<$ncols;$j++) echo("<th>".$this->contents[0][$j]."↕</th>");
@@ -506,8 +508,40 @@ $(document).ready(function() {
 <?php
 		$this->putrows(0,1);
 		echo("</tbody>\n");
-		$this->searchfooter(0,$ncols);
+//		$this->searchfooter(0,$ncols);
 		echo("</table>\n");
 	}
 
 }
+?>
+        <script type="module">
+            import {DataTable} from "./module.js"
+            window.dt = new DataTable("table", {
+                perPageSelect: [5, 10, 15, ["All", -1]],
+                tableRender: (_data, table, type) => {
+                    if (type === "print") {
+                        return table
+                    }
+                    const tHead = table.childNodes[0]
+                    const filterHeaders = {
+                        nodeName: "TR",
+                        childNodes: tHead.childNodes[0].childNodes.map(
+                            (_th, index) => ({nodeName: "TH",
+                                childNodes: [
+                                    {
+                                        nodeName: "INPUT",
+                                        attributes: {
+                                            class: "datatable-input",
+                                            type: "search",
+                                            "data-columns": `[${index}]`
+                                        }
+                                    }
+                                ]})
+                        )
+                    }
+                    tHead.childNodes.push(filterHeaders)
+                    return table
+                }
+})
+
+        </script>
