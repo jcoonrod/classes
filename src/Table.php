@@ -10,6 +10,7 @@ class Table { // These are public for now but may eventually be private with set
 	public $rowspans=array(); // >1 means start a rowspan
 	public $extra=array(); // extra headers
 	public $classes=array(); // Used for special coloring of rows
+	private $class="";
 	public $ntext=1; // number of columns to not be formatted
 	public $groups=array(); // headers
 	public $showGroupID=TRUE; //Print ID and name in the column (rowspanned) header. Set False for not displaying ID.
@@ -454,18 +455,12 @@ class Table { // These are public for now but may eventually be private with set
 		echo "</table>";
 	}
 	public function show_datatable($href=''){
-		$this->href=$href;
-		$_SESSION["contents"]=$this->contents; // put it first for easy debug!
-		$ncols=sizeof($this->contents[0]);
-		$j1=($href ? 0 : 1); 
-		$this->thead($j1,"table"); // second variable is the class
-		$this->putrows(0,1);
-		echo("</tbody>\n</table>\n");
+		$this->class="datatable";
+		$this->$show($href);
 		?>
-
         <script type="module">
             import {DataTable} from "/static/module.js"
-            window.dt = new DataTable("table", {
+            window.dt = new DataTable(".datatable", {
                 perPageSelect: [5, 10, 15, ["All", -1]],
                 tableRender: (_data, table, type) => {
                     if (type === "print") {
