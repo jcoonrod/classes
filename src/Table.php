@@ -309,12 +309,13 @@ class Table { // These are public for now but may eventually be private with set
 		}
 	}
 	
-	public function thead($jstart=1){
+	public function thead($jstart=1,$class=""){
 		$row=$this->contents[0];
 		$ncols=sizeof($row)??0;
 		
 		$nclasses=sizeof($this->classes);
-		echo("<table role='grid'>\n<thead>\n");
+		$tableClassClause=($class?" class=$class" :"");
+		echo("<table role='grid' $tableClassClause>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
 		for($j=$jstart;$j<$ncols;$j++){
             $infoIndex=($this->infoMatchWithID) ? $row[$j-1].'_'.$row[$j] : $row[$j];
@@ -427,14 +428,7 @@ class Table { // These are public for now but may eventually be private with set
 			echo("</tr>\n");
 		}
 	}
-/*
-	// on datatables, add earchable footer fiels
-	public function searchfooter($j1,$ncols) {
-		echo("<tfoot><tr>");
-		for($j=$j1; $j<$ncols; $j++) echo("<th>".$this->contents[0][$j]."</th>");
-			echo("</tr></tfoot>\n");
-	}
-*/
+
 // SHOW THE TABLE - Including the id column on hrefs, but do skip the groups column
 // this handles some really complex options:
 //	* it might have group headers defined in column 0
@@ -457,63 +451,18 @@ class Table { // These are public for now but may eventually be private with set
 		if($this->rowspan) $this->create_rowspans($j1);
 		$this->putrows($j1,$j2);
 		echo "</tbody>\n";
-//		if($_SESSION["datatable"]) $this->searchfooter($j1,$ncols);
 		echo "</table>";
 	}
 	public function show_datatable($href=''){
 		$this->href=$href;
-/*
-?>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#datatable tfoot th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" size=4 placeholder="'+title+'" />' );
-    } );
- 
-    // DataTable
-    var table = $('#datatable').DataTable( {
-        "order": [[ 0, "desc" ]]
-    });
- 
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );
-} );
-</script>
-<?php
-*/
 		$_SESSION["contents"]=$this->contents; // put it first for easy debug!
 		$ncols=sizeof($this->contents[0]);
-		?>
-<table class=table>
-	<thead><tr>
-<?php
-		for($j=0;$j<$ncols;$j++) echo("<th>".$this->contents[0][$j]."↕</th>");
-?>
-	</thead>
-	<tbody>
-<?php
+		$j1=($href ? 0 : 1); 
+		$this->thead($j1,"table"); // second variable is the class
 		$this->putrows(0,1);
-		echo("</tbody>\n");
-//		$this->searchfooter(0,$ncols);
-		echo("</table>\n");
-	}
+		echo("</tbody>\n</table>\n");
+		?>
 
-}
-?>
         <script type="module">
             import {DataTable} from "./module.js"
             window.dt = new DataTable("table", {
@@ -542,6 +491,8 @@ $(document).ready(function() {
                     tHead.childNodes.push(filterHeaders)
                     return table
                 }
-})
-
+			})
         </script>
+<?php
+	}
+}
