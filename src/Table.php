@@ -10,7 +10,7 @@ class Table { // These are public for now but may eventually be private with set
 	public $rowspans=array(); // >1 means start a rowspan
 	public $extra=array(); // extra headers
 	public $classes=array(); // Used for special coloring of rows
-	private $id="";
+	public $id="";
 	public $ntext=1; // number of columns to not be formatted
 	public $groups=array(); // headers
 	public $showGroupID=TRUE; //Print ID and name in the column (rowspanned) header. Set False for not displaying ID.
@@ -315,7 +315,7 @@ class Table { // These are public for now but may eventually be private with set
 		$ncols=sizeof($row)??0;
 		
 		$nclasses=sizeof($this->classes);
-		$idclause=($id ? " id=$this->id" : "");
+		$idclause=($this->id ? ' id="'.$this->id.'"' : "");
 		echo("<table role='grid' $idclause>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
 		for($j=$jstart;$j<$ncols;$j++){
