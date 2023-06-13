@@ -10,7 +10,7 @@ class Table { // These are public for now but may eventually be private with set
 	public $rowspans=array(); // >1 means start a rowspan
 	public $extra=array(); // extra headers
 	public $classes=array(); // Used for special coloring of rows
-	private $class="";
+	private $id="";
 	public $ntext=1; // number of columns to not be formatted
 	public $groups=array(); // headers
 	public $showGroupID=TRUE; //Print ID and name in the column (rowspanned) header. Set False for not displaying ID.
@@ -315,8 +315,8 @@ class Table { // These are public for now but may eventually be private with set
 		$ncols=sizeof($row)??0;
 		
 		$nclasses=sizeof($this->classes);
-		$tableClassClause=($class?" class=$this->class" :"");
-		echo("<table role='grid' $tableClassClause>\n");
+		$idclause=($id ? " id=$this->id" : "");
+		echo("<table role='grid' $idclause>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
 		for($j=$jstart;$j<$ncols;$j++){
             $infoIndex=($this->infoMatchWithID) ? $row[$j-1].'_'.$row[$j] : $row[$j];
@@ -460,7 +460,7 @@ class Table { // These are public for now but may eventually be private with set
 		?>
         <script type="module">
             import {DataTable} from "/static/module.js"
-            window.dt = new DataTable(".datatable", {
+            window.dt = new DataTable("#datatable", {
                 perPageSelect: [5, 10, 15, ["All", -1]],
                 tableRender: (_data, table, type) => {
                     if (type === "print") {
