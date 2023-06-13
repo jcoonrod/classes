@@ -310,12 +310,12 @@ class Table { // These are public for now but may eventually be private with set
 		}
 	}
 	
-	public function thead($jstart=1,$class=""){
+	public function thead($jstart=1){
 		$row=$this->contents[0];
 		$ncols=sizeof($row)??0;
 		
 		$nclasses=sizeof($this->classes);
-		$tableClassClause=($class?" class=$class" :"");
+		$tableClassClause=($class?" class=$this->class" :"");
 		echo("<table role='grid' $tableClassClause>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
 		for($j=$jstart;$j<$ncols;$j++){
