@@ -456,7 +456,7 @@ class Table { // These are public for now but may eventually be private with set
 	}
 	public function show_datatable($href=''){
 		$this->class="datatable";
-		$this->$show($href);
+		$this->show($href);
 		?>
         <script type="module">
             import {DataTable} from "/static/module.js"
