@@ -455,7 +455,7 @@ class Table { // These are public for now but may eventually be private with set
 		echo "</table>";
 	}
 	public function show_datatable($href=''){
-		$this->class="datatable";
+		$this->id="datatable";
 		$this->show($href);
 		?>
         <script type="module">
