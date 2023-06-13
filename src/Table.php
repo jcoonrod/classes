@@ -316,7 +316,7 @@ class Table { // These are public for now but may eventually be private with set
 		
 		$nclasses=sizeof($this->classes);
 		$idclause=($this->id ? ' id="'.$this->id.'"' : "");
-		echo("<table role='grid' $idclause>\n");
+		echo("<table $idclause>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
 		for($j=$jstart;$j<$ncols;$j++){
             $infoIndex=($this->infoMatchWithID) ? $row[$j-1].'_'.$row[$j] : $row[$j];
