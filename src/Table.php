@@ -318,6 +318,7 @@ class Table { // These are public for now but may eventually be private with set
 		$idclause=($this->id ? ' id="'.$this->id.'"' : "");
 		echo("<table $idclause>\n");
 		if(strlen($this->extraheader)>0) echo($this->extraheader);
+		echo("<tr>\n");
 		for($j=$jstart;$j<$ncols;$j++){
             $infoIndex=($this->infoMatchWithID) ? $row[$j-1].'_'.$row[$j] : $row[$j];
 			if( isset($this->infocol[$infoIndex]) ){$infoc=$this->info($this->infocol[$infoIndex]);}else{$infoc='';}
