@@ -463,7 +463,7 @@ class Table { // These are public for now but may eventually be private with set
             import {DataTable} from "/static/module.js"
             window.dt = new DataTable("#datatable", {
                 perPageSelect: [5, 10, 15, ["All", -1]],
-				colummns: [{fixedColumns: false}],
+				fixedColumns: false],
                 tableRender: (_data, table, type) => {
                     if (type === "print") {
                         return table
