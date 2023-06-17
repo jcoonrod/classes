@@ -1,4 +1,4 @@
-/* main styling for Thpglobal/Classes 
+/* main styling for Thpglobal/Classes -- NEEDED mobile menu
    The basic tags first */ 
 
 :root{--primary: #000088; --secondary:lightblue;box-sizing:border-box;}
@@ -15,7 +15,7 @@ h1 {font-size:2.4rem;font-weight:normal;color: black;}
 
 /* flex grid styling */
 section, .pure-g {display:flex; flex-wrap:wrap; 
-  justify-content: space-between; align-items:left; padding-bottom:2rem; 
+  align-items:left; padding-bottom:2rem; 
   min-width: 200px;}
 fieldset {display:flex; flex-direction: column; width:auto; padding:1rem; border-radius:1rem;}
 
@@ -93,6 +93,14 @@ td,th {padding:0.5rem; text-align:center;}
 th {background-color:var(--primary);color:white;  max-width:25vw;}
 th > a {color:white;}
 td {max-width:25vw;}
+
+.datatable-input {width:5rem;padding:0;margin:0;height:1.6rem;}
+th.datatable-ascending > a::after{content:" ^"}
+th.datatable-descending > a::after{content:" v"}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
 
 /* slide switch instead of checkbox ref https://codepen.io/morgoe/pen/VvzWQg */
