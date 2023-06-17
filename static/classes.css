@@ -96,8 +96,8 @@ td {max-width:25vw;}
 
 .datatable-top {display:flex; justify-items:space-between;}
 .datatable-input {width:5rem;padding:0;margin:0;height:1.6rem;width:90%}
-th.datatable-ascending > a::after{content:"&nbsp;^"}
-th.datatable-descending > a::after{content:"&nbsp;v"}
+th.datatable-ascending > a::after{content:"\a0^"}
+th.datatable-descending > a::after{content:"\a0v"}
 
 tr:nth-child(even) {
   background-color: #f2f2f2;
