@@ -47,7 +47,7 @@ class Form {
 		if($value=='') $value=0;
 		$label=ucwords($showname);
 		if($min<>NULL) $label .= "$min to $max";
-		echo("<label>$name ".ucwords($name).":");
+		echo("<br><label>$name ".ucwords($name).":");
 		echo("<input type=number name='$name' value='$value'");
 		if($min<>NULL) echo(" min='$min'");
 		if($max<>NULL) echo(" max='$max'");
@@ -62,7 +62,7 @@ class Form {
 		if($value=='') $value=0;
 		$label=ucwords($name);
 		if($min<>NULL) $label .= "$min to $max";
-		echo("<label>$name ".ucwords($name).":");
+		echo("<br><label>$name ".ucwords($name).":");
 		echo("<input type=number name='$name' value='$value'");
 		if($min<>NULL) echo(" min='$min'");
 		if($max<>NULL) echo(" max='$max'");
@@ -72,14 +72,14 @@ class Form {
 	public function text($name,$rename='',$minlength=0){
 		$label=($rename>'' ? $rename : $name);
 		$value=$this->data[$name]??'';
-		echo("<label>".ucwords($label).":");
+		echo("<br><label>".ucwords($label).":");
 		echo("<input type=text name='$name' value='$value'");
 		if($minlength>0) echo(' required><span class=status></span');
 		echo("></label>\n");
 	}
 	public function date($name,$required=0){ // This restricts daterange to mindate/maxdate if set
 		$preset=$this->data[$name]??"";
-		echo("<label>".ucwords($name).":");
+		echo("<br><label>".ucwords($name).":");
 		echo("<input type=date name='$name' value='$preset'");
 		if(isset($_COOKIE["mindate"])) echo(" min='".$_COOKIE["mindate"]."'");
 		if(isset($_COOKIE["maxdate"])) echo(" max='".$_COOKIE["maxdate"]."'");
@@ -89,7 +89,7 @@ class Form {
 	public function textarea($name,$rename='',$required=0){
 		$val=$this->data[$name]??'';
 		$label=($rename>'' ? $rename : $name);
-		echo("<label>".ucwords($label).": ");
+		echo("<br><label>".ucwords($label).":<br>\n");
 		echo("<textarea name=$name rows=5 cols=60");
 		if($required) echo(" REQUIRED");
 		echo(">$val</textarea>\n");
@@ -104,7 +104,7 @@ class Form {
         //HtML5 requires required value to be empty (not zero) for validation
         $requiredVal=($required) ? '' : 0;
 		$val=$this->data[$name]??0;
-        echo("<label>".ucwords($name).":");
+        echo("<br><label>".ucwords($name).":");
         echo("<select name='$name' $requiredAttr>\n<option value='$requiredVal'>(Select)\n");
         foreach($array as $key=>$value){
             echo("<option value='$key'");
