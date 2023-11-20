@@ -105,14 +105,14 @@ class Chart{
     
     public function bar($data,$labels) { // note - size of box is 360x360 to allow for labels
         $max=max($data); 
-        $tick=10; 
+        if($max>=5000) $tick=1000;
+        if($max<5000) $tick=500;
+        if($max<500) $tick=50;
         if($max<50) $tick=5; 
         if($max<10) $tick=1;
         $nx=sizeof($data);
         $ny=ceil($max/$tick);
-        $xtick=floor(360/$nx);
-        $ytick=floor(360/$ny);
-//        echo("<p>max $max tick $tick nx $nx ny $ny xt $xtick yt $ytick</p>\n");
+        if(!$nx or !$ny) return "<p>No data</p>\n";
 
         $svg='<svg viewBox="0 0 400 400" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
         for($j=0;$j<=$ny;$j++){
