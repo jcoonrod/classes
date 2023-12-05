@@ -17,14 +17,21 @@ class Page {
 		  <ul>
 			<?php
 			foreach($menu as $key=>$item) {
+
 				if(is_array($item) ){
 					$top=$key."▼";
 					echo("\t<li>$top\n");
 					echo("\t\t\t<ul>\n");
-					foreach($item as $b=>$a) echo("\t\t\t\t<li><a href='$a'>$b</a></li>\n");
+					foreach($item as $b=>$a) {
+						$target="";
+						if(substr($a,0,4)=="http") $target=" target=_blank";
+						echo("\t\t\t\t<li><a href='$a' $target>$b</a></li>\n");
+					}
 					echo("\t\t\t</ul>\n\t</li>\n");
 				}else{
-				echo("\t<li><a href='$item'>$key</a></li>\n");
+					$target="";
+					if(substr($item,0,4)=="http") $target=" target=_blank";
+					echo("\t<li><a href='$item' $target>$key</a></li>\n");
 				}
 			}
 			?>
