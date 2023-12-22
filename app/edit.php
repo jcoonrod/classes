@@ -17,6 +17,7 @@ if($hide2) {
 	$hidden2=array($hide2=>$_COOKIE[$cookie_name]);
 }													
 
+if($_COOKIE["debug"]) print_r("Hidden",$hidden);
 if($id=='') $id=0;
 $prefix=($id>0 ? "Edit Record $id" : "Create new record");
 $page=new \Thpglobal\Classes\Page;
