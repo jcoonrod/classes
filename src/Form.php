@@ -1,7 +1,7 @@
 <?php
 // CLASS FORM - EDIT A RECORD
 // 2023-03 simplify, remove css classes and divs, embed inputs in label instead of label for
-// ?? Can we get rid of the css class in the status span?
+
 namespace Thpglobal\Classes;
 
 class Form {
@@ -12,7 +12,8 @@ class Form {
 	public $hidden=["id"]; 
 	public $ignore=array();
 	public $where=array(); // ability to add filters to dropdowns inside ->record
-	private function debug($name,$item){
+
+	public function debug($name,$item){
 		if(boolval($_COOKIE["debug"] ?? FALSE)) {
 			echo("<p>$name: "); print_r($item); echo("</p>\n");
 		}
