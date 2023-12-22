@@ -11,7 +11,7 @@ $page=new \Thpglobal\Classes\Page;
 $page->start("$prefix in $table");
 if($table=='') Die("No table set.");
 $form=new \Thpglobal\Classes\Form;
-$hidden_fields="id".$_COOKIE["hidden"]; // string like "field1,field2";
+$hidden_fields="id, ".$_COOKIE["hidden"]; // string like "field1,field2";
 $form->debug("Hidden fields",$hidden_fields);
 $form->start($db,"/update");
 // the values are in cookies by those names
