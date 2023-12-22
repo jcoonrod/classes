@@ -16,7 +16,7 @@ if($hide) {
     $hidden_fields=explode(",",$hide);
     foreach($hidden_fields as $field) {
        $cookie_name=(substr($field,-3)=="_ID" ? strtolower(substr($field,0,-3)) : '');
-       $form->hidden[]=[$field,$_COOKIE[$cookie_name]??''];
+       $form->hidden[$field]=$_COOKIE[$cookie_name]??'';
     }
 }
 $form->debug("Hidden fields",$hidden_fields);
