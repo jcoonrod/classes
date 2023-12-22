@@ -9,7 +9,7 @@ class Form {
 	public $data=array();
 	public $minNumAll;
 	public $maxNumAll;
-	public $hidden=[["id"=>0]]; // default
+	public $hidden=["id"]; 
 	public $ignore=array();
 	public $where=array(); // ability to add filters to dropdowns inside ->record
 	private function debug($name,$item){
@@ -26,12 +26,6 @@ class Form {
 	}
 	public function end($submit="Save Data"){
 		echo("\n<button type=submit>$submit</button>\n</fieldset>\n</form>\n");
-	}
-	public function hidden($array) {
-		$this->hidden[]=$array; // adds a new element
-	}
-	public function ignore($array){ // adds a new element
-		$this->ignore[]=$array;
 	}
 	public function data($array) { // these are the existing values
 		$this->data=$array;
