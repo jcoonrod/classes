@@ -127,6 +127,7 @@ class Form {
 		{ $meta[$column_index] = $pdo_stmt->getColumnMeta($column_index);}
 		
 		$this->debug("Meta",$meta);
+		$this->debug("Hidden",$this->hidden);
 		foreach(range(0, $pdo_stmt->columnCount() - 1) as $column_index) {
 			$name=$meta[$column_index]["name"];
 			$type=$meta[$column_index]["native_type"];
