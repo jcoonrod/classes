@@ -1,4 +1,4 @@
-# classes
+# jcoonrod/classes
 
 * This is the set of classes (as of 12/2022) converted into a Composer Package
 * To use it, First 
