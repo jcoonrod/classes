@@ -13,11 +13,15 @@ $page->start("$prefix in $table");
 if($table=='') Die("No table set.");
 $form=new \Thpglobal\Classes\Form;
 if($hide) {
+    echo("<p>where ");
     $hidden_fields=explode(",",$hide);
     foreach($hidden_fields as $field) {
        $cookie_name=(substr($field,-3)=="_ID" ? strtolower(substr($field,0,-3)) : '');
-       $form->hidden[$field]=$_COOKIE[$cookie_name]??'';
+       $value=$_COOKIE[$cookie_name]??'';
+       $form->hidden[$field]=$value;
+       echo("$field=$value ");
     }
+    echo("</p>\n");
 }
 $form->debug("Hidden fields",$hidden_fields);
 $form->start($db,"/update");
