@@ -57,7 +57,7 @@ class Form {
 		if($value=='') $value=0;
 		$label=ucwords($name);
 		if($min<>NULL) $label .= "$min to $max";
-		echo("<br><label>$name ".ucwords($name).":");
+		echo("<br><label>.$label.":");
 		echo("<input type=number name='$name' value='$value'");
 		if($min<>NULL) echo(" min='$min'");
 		if($max<>NULL) echo(" max='$max'");
