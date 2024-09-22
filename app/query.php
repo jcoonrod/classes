@@ -6,8 +6,9 @@ $page->icon("pie-chart","chart?chart_type=pie","Display as Pie Chart");
 $page->icon("bar-chart","chart?chart_type=bar","Display as Bar Chart");
 $page->icon("line-chart","chart?chart_type=line","Display as Line Chart");
 $page->start("Query");
+// Note - the Show Tables button onclick must be url encoded
 ?>
-<p><button onclick=windows.location.href=query%3Dshow+tables>Show tables</button> 
+<p><button onclick=windows.location.href=%3Fquery%3Dshow+tables>Show tables</button> 
 <button onclick="goback()">&lt;</button> 
 <button onclick="gofwd()">&gt;</button> 
 <button onclick="goclear()"><span class='fa fa-trash'></span></button> 
