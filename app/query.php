@@ -7,7 +7,7 @@ $page->icon("bar-chart","chart?chart_type=bar","Display as Bar Chart");
 $page->icon("line-chart","chart?chart_type=line","Display as Line Chart");
 $page->start("Query");
 ?>
-<p><button onclick=windows.location.href=show+tables>Show tables</button> 
+<p><button onclick=windows.location.href=query%3Dshow+tables>Show tables</button> 
 <button onclick="goback()">&lt;</button> 
 <button onclick="gofwd()">&gt;</button> 
 <button onclick="goclear()"><span class='fa fa-trash'></span></button> 
