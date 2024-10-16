@@ -1,6 +1,6 @@
 <?php
 // SMART GENERIC LIST - OOP Version - Show the individual records from any report
-$table=$_GET["table"]??;
+$table=$_GET["table"]??'';
 setcookie("back","/list?table=$table");
 $page=new \Thpglobal\Classes\Page;
 if(CAN_EDIT) $page->icon("plus-circle","/edit?table=$table&id=0","Add new record");
