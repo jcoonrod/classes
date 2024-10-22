@@ -11,7 +11,7 @@ class Page {
 	}
 	public function menu() { // new classless responsive version
 		$menu=$_SESSION["menu"]??'';
-		if(sizeof($menu)) {
+		if($menu) {
 			?>
 		<nav>
 		  <ul>
