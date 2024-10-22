@@ -443,12 +443,12 @@ class Table { // These are public for now but may eventually be private with set
 		// j1 indicates which is the first column displayed
 		$j1=($ngroups ? 1 : 0); // Do we skip over a group colum?
 		$this->href=$href;
-		if($_COOKIE["debug"]) echo("<p>Classes ".print_r($this->classes,TRUE)."</p>\n");
+		if($_COOKIE["debug"]??'') echo("<p>Classes ".print_r($this->classes,TRUE)."</p>\n");
 		
 		$j1=(($this->href && $this->hidelink) ? $j1+1 : $j1);
 		// we either output start right after j1 or after the rowspan cells
 		$j2=$j1+($this->rowspan ? $this->rowspan : 1);
-		if($_COOKIE["debug"])echo("<p>Hide $this->hidelink H $href J $j1 $j2 NG $ngroups</p>\n");
+		if($_COOKIE["debug"]??'')echo("<p>Hide $this->hidelink H $href J $j1 $j2 NG $ngroups</p>\n");
 		$ncols=$this->thead($j1);
 		if($this->rowspan) $this->create_rowspans($j1);
 		$this->putrows($j1,$j2);
