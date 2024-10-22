@@ -10,8 +10,8 @@ class Page {
 		echo("<p>$message".":"); print_r($values); echo("</p>\n");
 	}
 	public function menu() { // new classless responsive version
-		$menu=$_SESSION["menu"];
-		if(isset($_SESSION["menu"]) and sizeof($menu)>0) {
+		$menu=$_SESSION["menu"]??'';
+		if(sizeof($menu)) {
 			?>
 		<nav>
 		  <ul>
