@@ -3,10 +3,9 @@
 // 2018-11 revised to use internal ZipArchive assuming it works in GAE/PHP7
 // This deals only with files in /tmp to be consistent with GAE
 
-$contents=$_SESSION["contents"];
+$contents=$_SESSION["contents"]??[];
 if(sizeof($contents)==0) header("Location:/?reply=Error:+Nothing+to+export.");
-$fname=$_COOKIE["fname"];
-if($fname=="") $fname=date('Y-m-d')."_Export";
+$fname=$_COOKIE["fname"]??date('Y-m-d')."_Export";
 $fname=$fname.".xlsx";
 
 // Convert the contents array into two xml files - one for numerics and one for strings
