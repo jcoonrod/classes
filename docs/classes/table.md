@@ -2,12 +2,14 @@
 * This formats and outputs the results of database queries into tables
 * It contains ->contents is a 2d array that gets displayed by the show method
 * This facilitates very fancy grids with links, towspans and other useful formats
-## Methods
+## Methods - Basic/Minimal
 * start($db) // must pass the database connection in order for query to work
+* query($query) // load results of a query into the grid
+* show($href='') // display the table. If href (link) provided then the first visible column has a link to $href.value of col0
+## Meghods - Intermediate used often
 * info($definition) // return a string function with info symbol and title
 * rowspan($n=2){ // set number of columns to include in rowspan
 * fetchRecords($query) // an addition not by me - not sure we need it
-* query($query) // load results of a query into the grid
 * column($id_col,$dest_col,$array) //
 * map($id_col,$dest_col,$array) //
 * map_query($id_col,$dest_col,$query)
