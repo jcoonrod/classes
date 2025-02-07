@@ -7,6 +7,6 @@ $page->start("Spreadsheet Upload into $into");
 echo("<p>You may only upload Excel files generated from this system.</p>\n");
 echo("<form action=import enctype='multipart/form-data' method='post'>"); 
 echo("<input name='userfile' type='file'>\n");
-echo("<button type=submit value='Upload Excel Spreadsheet File'>\n");
+echo("<button type=submit>Upload Excel Spreadsheet File</button>\n");
 echo("</form>\n");
 $page->end();
