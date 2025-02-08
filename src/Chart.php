@@ -128,7 +128,7 @@ class Chart{
         }
         for($i=0;$i<$nx;$i++){
             $svg.='<text x="'.$x.'" y="400" style="text-anchor: middle;">'.$labels[$i].'</text>';
-            $x=$x1+$i*$xtick; $height=floor(360*$data[$i]/($ny*$tick));
+            $x=40+$i*$xtick; $height=floor(360*$data[$i]/($ny*$tick));
             $svg.='<rect x="'.$x.'" y="'.(380-$height).'" width="'.$barwidth.'" height="'.$height.'" fill="rgba(0,255,0,0.3)" stroke="darkgreen"></rect>';
         }
         return $svg.="</svg>\n";
