@@ -120,7 +120,7 @@ class Chart{
 
         $svg='<svg viewBox="0 0 400 400" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
         for($j=0;$j<=$ny;$j++){
-            $y=380-$j*$tick;
+            $y=360-$j*$tick;
             $svg.='<line x1="20" y1="'.$y.'" x2="400" y2="'.$y.'" stroke="blue"/>';
             $svg.='<text x="0" y="'.$y.'">'.$j*$tick.'</text>';
         }
