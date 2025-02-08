@@ -40,6 +40,7 @@ foreach ($xlrows as $xlrow) {
 	$contents[]=$line;
 }
 $_SESSION["contents"]=$contents;
+$nrows=sizeof($contents);
 $reply="Success importing $nrows from $name";
-if(!$_COOKIE["debug"]) header("Location:$into?reply=$reply");
+if(!$_COOKIE["debug"]??0) header("Location:$into?reply=$reply");
 echo("<p><a href=$into?reply=$reply>Click here for $into</a></p>");
