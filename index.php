@@ -21,7 +21,9 @@ function zero_cookie($c) {setcookie($c,0,0,'/'); $_COOKIE[$c]=0;}
 if(!array_key_exists("debug",$_COOKIE)) zero_cookie("debug");
 foreach($_GET as $key=>$value) {setcookie($key,$value,0,'/'); $_COOKIE["$key"]=$value;}
 
-$_SESSION["menu"]=["Test Home"=>"/","Chart"=>"/testchart","Form"=>"/testform","Filter"=>"/testfilter","Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Sub 3"=>"/sub3"]];
+$_SESSION["menu"]=["Test Home"=>"/","Chart"=>"/testchart","Form"=>"/testform",
+	"Filter"=>"/testfilter",
+	"Admin"=>["Query"=>"/query","Cookies"=>"/cookies","Upload"=>"/upload"]];
 
 // simple router between local and generic apps
 $url=$_SERVER['REQUEST_URI'];
