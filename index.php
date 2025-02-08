@@ -28,6 +28,8 @@ $url=$_SERVER['REQUEST_URI'];
 $path=parse_url($url, PHP_URL_PATH);
 $generics=['/cookies','/chart', '/dump', '/edit', '/export', '/import', '/insert_table', '/list', '/logout',  '/query', '/update','/upload']; // standard routines defined in the classes
 
+function debug($message,$values) {
+		echo("<p>$message".":"); print_r($values); echo("</p>\n");
 
 if(in_array($path,$generics)){
 	include("./app$path.php");
