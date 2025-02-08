@@ -1,7 +1,6 @@
 <?php
 // Generic Spreadsheet upload - forwarding to generic import
-$into=$_GET["into"];
-if($into=="") $into="/dump"; // Default to show $contents
+$into=$_GET["into"]??"/dump";
 $page=new \Thpglobal\Classes\Page;
 $page->start("Spreadsheet Upload into $into");
 echo("<p>You may only upload Excel files generated from this system.</p>\n");
