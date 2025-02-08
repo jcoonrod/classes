@@ -112,7 +112,12 @@ class Chart{
         if($max<10) $tick=1;
         $nx=sizeof($data);
         $ny=ceil($max/$tick);
-        if(!$nx or !$ny) return "<p>No data</p>\n";
+        $xtick=10; 
+        if($xmax<50) $xtick=5; 
+        if($xmax<10) $xtick=1;
+        $dx=($xmax<1 ? 360 : 360/$xmax); // number of pixels between ticks					
+					
+	if(!$nx or !$ny) return "<p>No data</p>\n";
 
         $svg='<svg viewBox="0 0 400 400" width=400 height=auto xmlns="http://www.w3.org/2000/svg">';
         for($j=0;$j<=$ny;$j++){
