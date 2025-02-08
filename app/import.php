@@ -1,7 +1,6 @@
 <?php
 // Import an xlsx file into $contents based on ZipArchive
-$into=$_COOKIE["into"];
-if($into=="") $into="/dump";
+$into=$_COOKIE["into"]??"/dump";
 $tmpname=$_FILES['userfile']['tmp_name'];
 debug("Files:",$_FILES);
 $name=$_FILES['userfile']['name'];
