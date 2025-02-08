@@ -112,6 +112,7 @@ class Chart{
         if($max<10) $tick=1;
         $nx=sizeof($data);
         $ny=ceil($max/$tick);
+	$xtick=floor(360./$nx);
 	$barwidth=floor(0.8*360./$nx);
 	$gap=floor(0.2*360./$nx);						
 	if(!$nx or !$ny) return "<p>No data</p>\n";
@@ -122,13 +123,13 @@ class Chart{
             $svg.='<line x1="20" y1="'.$y.'" x2="400" y2="'.$y.'" stroke="blue"/>';
             $svg.='<text x="0" y="'.$y.'">'.$j*$tick.'</text>';
         }
-        for($=$gap;$x<=400;$x+=floor(360/$nx)){
+        for($x=$gap;$x<=400;$x+=floor(360/$nx)){
             $svg.='<line x1="'.$x.'" y1="20" x2="'.$x.'" y2="380" stroke="blue"/>';
         }
         for($i=0;$i<$nx;$i++){
             $svg.='<text x="'.$x.'" y="400" style="text-anchor: middle;">'.$labels[$i].'</text>';
             $x=$x1+$i*$xtick; $height=floor(360*$data[$i]/($ny*$tick));
-            $svg.='<rect x="'.$x.'" y="'.(380-$height).'" width="'.$half.'" height="'.$height.'" fill="rgba(0,255,0,0.3)" stroke="darkgreen"></rect>';
+            $svg.='<rect x="'.$x.'" y="'.(380-$height).'" width="'.$barwidth.'" height="'.$height.'" fill="rgba(0,255,0,0.3)" stroke="darkgreen"></rect>';
         }
         return $svg.="</svg>\n";
     }
