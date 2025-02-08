@@ -30,6 +30,7 @@ $generics=['/cookies','/chart', '/dump', '/edit', '/export', '/import', '/insert
 
 function debug($message,$values) {
 		echo("<p>$message".":"); print_r($values); echo("</p>\n");
+}
 
 if(in_array($path,$generics)){
 	include("./app$path.php");
