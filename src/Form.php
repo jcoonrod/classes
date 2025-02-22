@@ -85,7 +85,7 @@ class Form {
 		$val=$this->data[$name]??'';
 		$label=($rename>'' ? $rename : $name);
 		echo("<br><label>".ucwords($label).":<br>\n");
-		echo("<textarea name=$name rows=5 cols=60");
+		echo("<textarea name=$name rows=5 cols=60 spellcheck=false");
 		if($required) echo(" REQUIRED");
 		echo(">$val</textarea>\n");
 		if($required) echo("<span class=status></span>");
